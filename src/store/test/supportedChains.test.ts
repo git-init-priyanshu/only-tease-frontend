@@ -1,4 +1,5 @@
-import { baseSepolia, base } from 'viem/chains';
+import { base,baseSepolia } from 'viem/chains';
+
 import { Environment } from '../environment';
 import { getChainsForEnvironment } from '../supportedChains';
 

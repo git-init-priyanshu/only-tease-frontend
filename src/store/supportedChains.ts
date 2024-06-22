@@ -1,4 +1,5 @@
-import { baseSepolia, Chain, base } from 'viem/chains';
+import { base,baseSepolia, Chain } from 'viem/chains';
+
 import { Environment, getCurrentEnvironment } from './environment';
 
 // The list of supported Chains for a given environment

@@ -1,4 +1,4 @@
-import { Abi, Address, type Chain } from 'viem';
+import { type Chain,Abi, Address } from 'viem';
 import { useAccount } from 'wagmi';
 
 import { getChainsForEnvironment } from '@/store/supportedChains';

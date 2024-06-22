@@ -1,8 +1,8 @@
 'use client';
 
-import { useSession } from "next-auth/react";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 

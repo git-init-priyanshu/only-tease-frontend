@@ -1,12 +1,11 @@
-import * as React from 'react';
+import { styled } from '@mui/material';
+import Box from '@mui/material/Box';
 import LinearProgress, {
   linearProgressClasses,
   LinearProgressProps,
 } from '@mui/material/LinearProgress';
-import { styled } from '@mui/material';
-
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import * as React from 'react';
 
 function LinearProgressWithLabel(
   props: LinearProgressProps & { value: number }

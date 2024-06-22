@@ -15,8 +15,8 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { baseSepolia } from 'wagmi/chains';
 
-import useNFTListContract from '@/hooks/contracts/useListNFtContract';
 import { toastStyles } from '@/lib/utils';
+import useNFTListContract from '@/hooks/contracts/useListNFtContract';
 type props = {
   icon: any;
   name: string;

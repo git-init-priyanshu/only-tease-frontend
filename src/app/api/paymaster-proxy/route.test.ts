@@ -1,6 +1,8 @@
 import { isValidAAEntrypoint, isWalletASmartWallet } from '@coinbase/onchainkit/wallet';
 import { NextRequest } from 'next/server';
+
 import { paymasterClient } from '@/utils/paymasterClient';
+
 import { POST } from './route';
 
 jest.mock('@coinbase/onchainkit/wallet', () => ({

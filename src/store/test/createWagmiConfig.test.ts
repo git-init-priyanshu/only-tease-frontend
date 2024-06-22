@@ -1,4 +1,5 @@
 import { baseSepolia } from 'viem/chains';
+
 import { createWagmiConfig } from '../createWagmiConfig';
 import { Environment, EnvironmentKeys } from '../environment';
 

@@ -12,9 +12,6 @@ import toast from 'react-hot-toast';
 import { useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
-import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
-import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
-import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 import {
   batchSubscribeFor,
   chainLinkAutomationSubscription,
@@ -30,6 +27,9 @@ import {
   purchaseSubscriptionZkevm,
 } from '@/lib/func';
 import { cn, toastStyles } from '@/lib/utils';
+import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
+import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 
 import RippleLoader from '@/components/buttons/rippleLoader';
 import LinearWithValueLabel from '@/components/ui/progressBar';

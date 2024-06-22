@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { getChainById } from '@/store/supportedChains';
+
 import { getRpcProviderForChain } from '@/utils/provider';
 
 /**

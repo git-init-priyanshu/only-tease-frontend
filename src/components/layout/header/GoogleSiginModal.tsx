@@ -7,7 +7,7 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import { signIn, useSession } from 'next-auth/react';
-import { Dispatch, SetStateAction, memo } from 'react';
+import { Dispatch, memo,SetStateAction } from 'react';
 
 import useUserOnBoarding from '@/hooks/contracts/useUserOnboarding';
 

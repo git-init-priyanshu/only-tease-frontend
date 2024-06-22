@@ -1,7 +1,9 @@
-import React from 'react';
-import { allModelData } from '@/utils/modelData';
 import { Metadata } from 'next';
+import React from 'react';
+
 import CreatorProfile from '@/components/creator-profile';
+
+import { allModelData } from '@/utils/modelData';
 
 export type Props = {
   params: {
