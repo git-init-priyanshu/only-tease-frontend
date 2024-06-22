@@ -528,7 +528,6 @@ export async function getTestFundsBase(address: any) {
     "ae15e660d9bcfe971f2d39b80b914aec7e8a607a91c9588a77cee8011b0ae11b",
     provider
   );
-  debugger
   const usdc = new ethers.Contract(
     mUSDBase,
     mockUsdAbi,

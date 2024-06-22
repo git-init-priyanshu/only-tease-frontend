@@ -53,7 +53,6 @@ const useNFTSubscription = ({ amount, listingId, tokenId, onSuccess }: {
   const buyNFT = async () => {
     try {
       if (mockUsdContract.status === "ready" && nftMarketPlaceContract.status === "ready" && session.data?.user && address) {
-        debugger
         await writeContractsAsync({
           contracts: [
             {
