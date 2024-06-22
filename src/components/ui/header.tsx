@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 
-import useFetchUserDetails from "@/hooks/useFetchUserDetails";
+import useFetchUserDetails from "@/hooks/user/useFetchUserDetails";
 
 import AccountConnect from '@/components/layout/header/AccountConnect';
 import GoogleSignIn from "@/components/layout/header/GoogleSiginModal";

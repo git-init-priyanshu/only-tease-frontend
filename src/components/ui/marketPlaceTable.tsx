@@ -1,3 +1,5 @@
+import BuyModal from '@/components/ui/BuyModal';
+import { buyNft } from '@/lib/func';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -8,14 +10,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Image from 'next/image';
 import * as React from 'react';
-import BuyModal from '@/components/ui/BuyModal';
-import { buyNft } from '@/lib/func';
 
+import useGlobalStore from '@/hooks/store/useGlobalStore';
 import useWeb3auth from '@/hooks/useWeb3auth';
 import { toastStyles } from '@/lib/utils';
 import { allModelData, IndianModelCardData } from '@/utils/modelData';
 import toast from 'react-hot-toast';
-import useGlobalStore from '@/hooks/useGlobalStore';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

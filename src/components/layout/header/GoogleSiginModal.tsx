@@ -13,8 +13,8 @@ import { http, useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 import { useWriteContracts } from 'wagmi/experimental';
 
-import useFetchUserDetails from '@/hooks/useFetchUserDetails';
 import { usePaymasterBundlerContract } from '@/hooks/usePaymasterBundlerContract';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 
 import { isLocal } from '@/constant/env';
 

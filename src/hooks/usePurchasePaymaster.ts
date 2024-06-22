@@ -1,7 +1,7 @@
 import { baseSepolia } from 'viem/chains';
 
-import { generateContractHook } from '@/hooks/contracts';
-import { abi } from '@/hooks/PurchaseBunderAbi';
+import { abi } from '@/hooks/abi/PurchaseBunderAbi';
+import { generateContractHook } from '@/hooks/contracts/contracts';
 
 export const usePurchasePaymaster = generateContractHook({
   abi: abi,

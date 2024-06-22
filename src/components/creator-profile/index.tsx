@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
-import useGlobalStore from '@/hooks/useGlobalStore';
+import useGlobalStore from '@/hooks/store/useGlobalStore';
 import useWeb3auth from '@/hooks/useWeb3auth';
 import { getModalPayment } from '@/lib/func';
 import { toastStyles } from '@/lib/utils';

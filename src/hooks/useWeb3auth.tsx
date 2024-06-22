@@ -10,7 +10,7 @@ import { ethers } from 'ethers';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import useGlobalStore from '@/hooks/useGlobalStore';
+import useGlobalStore from '@/hooks/store/useGlobalStore';
 const clientId =
   'BEsx8crmOvhVhtiEPU4JbHWOnUGQ_g4TZsWmqUiMWmONwrdqCwuoowH6HJQUUJ-iXPhz8tb8BvVoHWEtF0H_wzQ';
 

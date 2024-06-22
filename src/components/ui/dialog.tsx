@@ -6,15 +6,13 @@ import {
   Transition,
   TransitionChild,
 } from '@headlessui/react';
-import { parseUnits } from 'ethers/lib/utils';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
-import { useWriteContracts } from 'wagmi/experimental';
 
-import { usePurchasePaymaster } from '@/hooks/usePurchasePaymaster';
+import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
 import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 import {
   batchSubscribeFor,
@@ -26,7 +24,6 @@ import {
   getTestFundsBase,
   getTestFundsWeb3Auth,
   getTestFundsZkEvm,
-  mUSDBase,
   PurchaseSubsAmoyGasslessBundle,
   PurchaseSubsAvaGasslessBundle,
   purchaseSubscriptionZkevm,
@@ -34,7 +31,6 @@ import {
 import { cn, toastStyles } from '@/lib/utils';
 
 import RippleLoader from '@/components/buttons/rippleLoader';
-import { defaultUrl } from '@/components/layout/header/GoogleSiginModal';
 import LinearWithValueLabel from '@/components/ui/progressBar';
 import RadioButton from '@/components/ui/radioGroup';
 import { VanishInput } from '@/components/ui/vanishInput';
@@ -42,9 +38,8 @@ import { VanishInput } from '@/components/ui/vanishInput';
 import { morph } from '@/app/Providers';
 import { coinData } from '@/utils/natworkData';
 
-import {
-  default as mockUsdAbi,
-} from '../../constant/MockUSD.json';
+
+
 
 const subscriptionId = Math.floor(Math.random() * (1e12 - 1 + 1)) + 1;
 
@@ -69,7 +64,6 @@ export default function MyModal({
   const [batchGaslessTrx, setBatchGaslessTrx] = useState('');
   const [approvetrx, setApproveTrx] = useState('');
   const [Polygontrx, setPolygonTrx] = useState('');
-  const [Cardona, setCardona] = useState('');
   const [avalancheCrossTxn, setAvalancheCrossTxn] = useState('');
   const [chainlinkCrossTxn, setChainLinkCrossTxn] = useState('');
   const [testTokensHash, setTestTokensHash] = useState('');
@@ -78,14 +72,16 @@ export default function MyModal({
   const [polygonTokensHash, setPolygonTokensHash] = useState('');
   const [nftTrx, setNftTrx] = useState('');
   const [progress, setProgress] = React.useState(0);
-  const { writeContracts } = useWriteContracts({
-    mutation: {
-      onSuccess: () => {
-        setProgress(40);
-      },
-    }
-  });
-  const contract = usePurchasePaymaster()
+  const showMsgs = () => {
+    setProgress(33);
+    toast.success('Payment completed successfully', toastStyles);
+  };
+
+  const { purchaseSubscription, callsStatus } = useNftMarketPlaceAutomation({
+    amount: value.toString(),
+    modelId: modelId
+  })
+
 
   const {
     smartAccount,
@@ -100,6 +96,7 @@ export default function MyModal({
     setIsOpen(false);
     setTestTokensBaseHash("")
     setWalletChosen('');
+    setProgress(0)
   }
   const [provider, setProvider] = useState<any>(undefined);
   const [loadingState, setLoadingState] = useState<string>('Confirm Payment');
@@ -110,20 +107,8 @@ export default function MyModal({
     `She's right around the corner 👠. Sit tight! 💺💃`,
     'She is ready!🍾 Head over and enjoy the show! 🎵🥂',
   ];
-  // React.useEffect(() => {
-  //   console.log(loggedIn, 'logged in');
-  //   console.log(smartAccount, 'smartAccount');
-  //   if (loggedIn) {
-  //     // const provider = new ethers.providers.Web3Provider(
-  //     //   window.ethereum as any
-  //     // );
-  //     setProvider(Authprovider);
-  //   }
-  // }, [Authprovider]);
-  const showMsgs = () => {
-    setProgress(33);
-    toast.success('Payment completed successfully', toastStyles);
-  };
+
+
   const chainLinkNotifier = async () => {
     try {
       const resp = await fetch(
@@ -185,43 +170,8 @@ export default function MyModal({
   const handleOperation = async (walletChosen: string) => {
     try {
       if (walletChosen.toLowerCase() === 'base') {
-        setProgress(10);
-        writeContracts(
-          {
-            contracts: [
-              {
-                address: mUSDBase,
-                abi: mockUsdAbi,
-                functionName: 'approve',
-                args: [contract.address, parseUnits(value.toString(), 6)],
-              },
-              {
-                address: contract.address,
-                abi: contract.abi,
-                functionName: 'purchaseSubscription',
-                args: [modelId, subscriptionId],
-              },
-            ],
-            capabilities: {
-              paymasterService: {
-                url: defaultUrl,
-              },
-              [baseSepolia.id]: {
-                atomicBatch: {
-                  supported: true,
-                },
-              }
-            },
-          }
-        );
-        setProgress(30);
-        // const resp = await approveNSubscribe({ provider, priceInUsd: value });
-        // console.log(resp);
-        // setApproveTrx(resp.hash);
-        // showMsgs();
-        // // if (resp.fromAddr) {
-        // //   mintNft(resp.fromAddr);
-        // // }
+        setProgress(10)
+        purchaseSubscription()
       } else if (walletChosen === 'MoonBeam') {
         setProgress(10);
         const resp = await batchSubscribeFor({
@@ -299,7 +249,6 @@ export default function MyModal({
         );
         if (resp?.hash) {
           await zkEVMNotifier();
-          setCardona(resp?.hash);
           showMsgs();
           setProgress(100);
         }
