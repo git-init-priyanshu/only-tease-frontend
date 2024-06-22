@@ -72,7 +72,7 @@ function GoogleSignIn({
         body: JSON.stringify({
           name: session?.user.name,
           description:
-            'Welcome to BlockTease, with this NFT you gain access to our exclusive content! Enjoy (:',
+            'Welcome to Onlytease, with this NFT you gain access to our exclusive content! Enjoy (:',
         }),
       }
     );
