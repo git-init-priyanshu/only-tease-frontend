@@ -77,10 +77,10 @@ createWeb3Modal({
 
 function Providers({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className='w-full h-full'>
       <Toaster position='top-center' reverseOrder={false} />
       {children}
-    </>
+    </div>
   );
 }
 export default Providers;

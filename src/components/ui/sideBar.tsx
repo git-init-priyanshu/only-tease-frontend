@@ -1,16 +1,14 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import amFlag from 'public/images/americaFlagIcon.png';
 import React, { useEffect, useRef } from 'react';
 
-import CreatorsIcon from '@/../public/images/creatorsIcon.png';
-import FavoritesIcon from '@/../public/images/FavoritesIcon.png';
-import HomeIcon from '@/../public/images/homeIcon.png';
-import LiveIcon from '@/../public/images/liveIcon.png';
-import marketPlaceIcon from '@/../public/images/marketPlaceIcon.png';
-import SettingIcon from '@/../public/images/settingsIcon.png';
-import stakingIcon from '@/../public/images/stakingIcon.png';
+import { cn } from '@/lib/utils';
+
+import { BagIcon, FavIcon, HomeIcon, StakingIcon, StarIcon, TvIcon } from '@/components/ui/icons';
+
 
 const sideBarContentGenral = [
   {
@@ -20,22 +18,17 @@ const sideBarContentGenral = [
   },
   {
     tag: 'Creators',
-    icon: CreatorsIcon,
+    icon: FavIcon,
     link: '#',
   },
   {
     tag: 'Favorites',
-    icon: FavoritesIcon,
+    icon: StarIcon,
     link: '#',
   },
   {
     tag: 'Live',
-    icon: LiveIcon,
-    link: '#',
-  },
-  {
-    tag: 'Settings',
-    icon: SettingIcon,
+    icon: TvIcon,
     link: '#',
   },
 ];
@@ -43,7 +36,7 @@ const sideBarContentGenral = [
 const sideBarcontentSpecials = [
   {
     tag: 'Staking',
-    icon: stakingIcon,
+    icon: StakingIcon,
     link: '#',
     iconAfter: (
       <svg
@@ -64,7 +57,7 @@ const sideBarcontentSpecials = [
   },
   {
     tag: 'Marketplace',
-    icon: marketPlaceIcon,
+    icon: BagIcon,
     link: '/marketPlace',
   },
 ];
@@ -97,21 +90,21 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
   return (
     <div
       ref={sidebarRef}
-      className={`fixed lg:relative z-20 top-[6%]  left-0 lg:left-[20%] h-full  lg:w-[25%] bg-[#130D1A] text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}
+      className={`fixed lg:relative z-20 top-[6%]  left-0 lg:left-[20%] h-full  lg:w-[25%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
     >
       <div className='flex py-10 flex-col justify-between items-center gap-4 overflow-y-auto w-full h-full'>
+        <Image src="/images/onchain-summer.png" alt='onchain' width={213} height={178} />
+        <div className='px-5 w-full'>
+          <div className='h-[1px] bg-[#625B71] w-full' />
+        </div>
         <SideBarSections sectionFor='general' content={sideBarContentGenral} />
-        <SideBarSections
-          sectionFor='specials'
-          content={sideBarcontentSpecials}
-        />
+        <SideBarSections sectionFor='special' content={sideBarcontentSpecials} />
 
-        <div className='m-4 p-[0.8px] rounded-xl max-w-sm bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 relative'>
+        <div className='m-4 p-[0.8px] rounded-xl max-w-sm relative'>
           <input
             placeholder='Search here'
-            className='text-[#CEB9E9] w-full h-10 bg-[#2B213B] outline-none focus:outline-none rounded-xl px-12'
+            className='text-[##625B71] w-full h-10 bg-[##F7F2FA] outline-none focus:outline-none rounded-xl px-12'
           />
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -119,7 +112,7 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             viewBox='0 0 24 24'
             strokeWidth={1.5}
             stroke='currentColor'
-            className='w-6 h-6 absolute text-[#CEB9E9] top-0 translate-x-full translate-y-1/3'
+            className='w-6 h-6 absolute text-[#625B71] top-0 translate-x-full translate-y-1/3'
           >
             <path
               strokeLinecap='round'
@@ -128,7 +121,7 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             />
           </svg>
         </div>
-        <ul className='text-lg capitalize gap-2 flex flex-col items-start justify-start '>
+        <ul className='text-lg text-[#625B71] capitalize gap-2 flex flex-col items-start justify-start '>
           <Link href='/global'>
             <li>🌍 Global </li>
           </Link>
@@ -179,32 +172,49 @@ export const SideBarSections = ({
   sectionFor: string;
   content: any[];
 }) => {
+  const pathname = usePathname()
   return (
     <div
-      className={`${
-        sectionFor === 'specials'
-          ? 'border-[#CEB9E9] border-y-[0.5px] py-6 px-4 w-[80%]'
-          : ''
-      } flex flex-col gap-4 items-center justify-around`}
+      className={`${sectionFor === 'specials'
+        ? 'border-[#CEB9E9] border-y-[0.5px] py-6 px-4 w-[80%]'
+        : ''
+        } flex flex-col  items-start w-full justify-around`}
     >
-      <p className='capitalize bg-gradient-to-br text-xl lg:text-2xl font-bold from-[#FB0393] from-[0%] to-[#9A3CFF] to-[100%] bg-clip-text text-transparent text-center'>
+      <p className='capitalize pl-10 mb-3 text-xl lg:text-2xl font-bold !text-[#0051FE] bg-clip-text text-transparent text-center'>
         {sectionFor}
       </p>
-      <div className='flex gap-4 flex-col items-start justify-center'>
+      <div className='flex gap-x-4 flex-col w-full items-start justify-center'>
         {content.map((item, index) => (
           <Link
             href={item.link}
             key={index}
-            className='flex gap-4 items-center'
+            className={cn('text-[#625B71] group pl-10 py-2 relative hover:bg-link w-full flex gap-x-4 items-center', pathname === item.link && "bg-link")}
           >
-            <Image
+
+            <div className={cn('absolute hidden group-hover:block top-0 h-full w-[12px] shadow-link left-0 bg-[#FB0393] blur-sm', pathname === item.link && 'block bg-[#FB0393]')} />
+            {/* <Image
               src={item.icon}
               priority
               alt={item.tag}
               width={20}
               height={20}
-            />
-            <p className='block text-lg'>{item.tag}</p>
+            /> */}
+            <p className={cn('group-hover:text-[#FB0393]', pathname === item.link && 'text-[#FB0393]')}>
+              {item.icon()}
+              {/* <svg
+                width={20}
+                height={22}
+                viewBox="0 0 20 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.5 19.5556H6.25V12.2222H13.75V19.5556H17.5V8.55556L10 3.05556L2.5 8.55556V19.5556ZM0 22V7.33333L10 0L20 7.33333V22H11.25V14.6667H8.75V22H0Z"
+                  fill="currentColor"
+                />
+              </svg> */}
+            </p>
+            <p className={cn('block text-lg font-medium group-hover:text-[#FB0393]', pathname === item.link && 'text-[#FB0393]')}>{item.tag}</p>
             {item.iconAfter ? item.iconAfter : null}
           </Link>
         ))}

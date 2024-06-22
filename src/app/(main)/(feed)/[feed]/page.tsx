@@ -18,8 +18,8 @@ const Page = ({ params }: Props) => {
 
   if (!defaultModel) <NotFound />;
   return (
-    <div className='md:border-l-2 w-full   md:border-l-[#433F48]'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 mt-4 p-3 xl:p-10'>
+    <div className='w-full '>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 p-3 xl:p-10'>
         {modelData.map((item, index) => (
           <React.Fragment key={index}>
             <ModelCard {...item} index={index + 1} />

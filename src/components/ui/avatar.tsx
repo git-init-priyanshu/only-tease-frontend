@@ -42,6 +42,8 @@ const Avatar = ({
   if (!teaseData) {
     return <div>Loading...</div>;
   }
+
+  const name = teaseData.name + ".tease"
   return (
     <a
       href={`https://testnets.opensea.io/assets/base-sepolia/0x57eb75df7f17aa5351f850040eed5c66f945df32/${openId}`}
@@ -56,15 +58,14 @@ const Avatar = ({
           <Image
             src={teaseData.image}
             alt={teaseData.name}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             className=' rounded-full'
           />
         )}
       </div>
-
-      <p className='text-[#CEB9E9] text-sm font-semibold'>
-        {teaseData.name}.tease
+      <p className='text-[#0051FE1] text-sm font-semibold'>
+        {name.slice(0, teaseData.name.length - 4)}....
       </p>
     </a>
   );

@@ -8,6 +8,13 @@ export default {
       fontFamily: {
         primary: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        link: 'linear-gradient(89.96deg, rgba(251, 3, 147, 0.51) -19.7%, rgba(251, 3, 147, 0) 100.08%)',
+        button: 'linear-gradient(90deg, #161848 0%, #2C319E 100%)',
+      },
+      boxShadow: {
+        link: '0px 0px 10px 0px #FB0393',
+      },
       colors: {
         primary: {
           // Customize it on globals.css :root

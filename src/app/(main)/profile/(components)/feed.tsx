@@ -36,7 +36,6 @@ const ModelFeed = ({
   )
 
   const isUnlocked = data?.isUnlocked ?? false
-
   return (
     <div className='w-full '>
       <div className='bg-gradient-to-br from-[#9A3CFF] from-[0%] to-[#5C2499] to-[100%] rounded-md p-[0.8px] h-fit w-full  '>

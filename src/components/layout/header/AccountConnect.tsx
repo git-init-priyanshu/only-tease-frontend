@@ -2,6 +2,8 @@ import { ConnectAccount } from '@coinbase/onchainkit/wallet';
 import { useAccount, useChainId, useDisconnect } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
+import Button from '@/components/buttons/Button';
+
 
 /**
  * AccountConnect
@@ -33,38 +35,34 @@ function AccountConnect() {
 
         if (account.status === 'connected' && chainId !== baseSepolia.id) {
           return (
-            <button
+            <Button
               onClick={() => disconnect()}
-              className='z-30 relative bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] font-bold rounded-md text-white py-2 px-4'
             >
               Wrong network
-            </button>
+            </Button>
           );
         }
 
         if (account.status === 'reconnecting') {
-          return <button
-            className='z-30 relative bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] font-bold rounded-md text-white py-2 px-4'
+          return <Button
           >
             Connecting...
-          </button>
+          </Button>
         }
 
         if (account.status === 'connected') {
-          return <button
+          return <Button
             onClick={() => disconnect()}
-            className='z-30 relative bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] font-bold rounded-md text-white py-2 px-4'
           >
             {account.address.slice(0, 4) + "..." + account.address.slice(account.address.length - 4, account.address.length - 1)}
-          </button>
+          </Button>
         }
 
         return (
-          <button
-            className='z-30 relative bg-gradient-to-b  from-[#FB0393] to-[#9A3CFF] font-bold rounded-md text-white py-2 px-4'
+          <Button
           >
-            CC
-          </button>
+            ....
+          </Button>
         );
       })()}
     </div >
