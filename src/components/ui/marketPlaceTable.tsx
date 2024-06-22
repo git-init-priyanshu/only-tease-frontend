@@ -1,5 +1,3 @@
-import BuyModal from '@/components/ui/BuyModal';
-import { buyNft } from '@/lib/func';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -11,11 +9,12 @@ import TableRow from '@mui/material/TableRow';
 import Image from 'next/image';
 import * as React from 'react';
 
-import useGlobalStore from '@/hooks/store/useGlobalStore';
-import useWeb3auth from '@/hooks/useWeb3auth';
-import { toastStyles } from '@/lib/utils';
-import { allModelData, IndianModelCardData } from '@/utils/modelData';
-import toast from 'react-hot-toast';
+import useNFTSubscription from '@/hooks/contracts/useBuyNftSubscription';
+import useGetListedSubscriptions from '@/hooks/user/useGetListedSubscriptions';
+
+import BuyModal from '@/components/ui/BuyModal';
+
+import { allModelData } from '@/utils/modelData';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,126 +30,32 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
 
-function createData(
-  tokenId: any,
-  id: number,
-  icon: any,
-  name: string,
-  floor: number,
-  floor1d: number,
-  volume: number,
-  TopOffer: number,
-  Sales: number,
-  Listed: number
-) {
-  return {
-    icon,
-    name,
-    floor,
-    floor1d,
-    volume,
-    TopOffer,
-    Sales,
-    Listed,
-    id,
-    tokenId,
-  };
-}
-
-const rows = IndianModelCardData.map((model) => {
-  const randomNum = Math.floor(Math.random() * 10) + 1; // Generating a random number between 1 and 100
-  const newListPrice = model.ListPrice - randomNum; // Adding the random number to the original listPrice
-  return createData(
-    model.tokenId,
-    model.id,
-    model.icon,
-    model.name,
-    model.ListPrice,
-    model.value,
-    model.views,
-    newListPrice,
-    model.Tease,
-    model.posts
-  );
-});
-
 export default function CustomizedTables() {
-  const [data, setData] = React.useState([]);
-  const { smartAccount, login } = useWeb3auth();
-  const { smartAddress } = useGlobalStore();
+  const { data } = useGetListedSubscriptions()
   const [progress, setProgress] = React.useState(0);
 
   const [selectActiveData, setSelectActiveData] = React.useState<any>({
     id: '',
     tokenId: '',
     price: '',
+    listingId: '',
     icon: '',
     name: '',
     listingPrice: '',
   });
   const [isOpen, setIsOpen] = React.useState(false);
-  const [txHash, setTxHash] = React.useState('');
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'https://db-graph-backend.onrender.com/api/listed-subscriptions'
-        );
-        const jsonData = await response.json();
-        setData(
-          jsonData.data.sort(
-            (a: any, b: any) => parseFloat(b.price) - parseFloat(a.price)
-          )
-        );
-        return;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
-  const handleBuyNft = async (
-    tokenId: string,
-    listingId: string,
-    price: string
-  ) => {
-    login(1);
-    setProgress(10);
-    toast.loading('Buying NFT', toastStyles);
-    const resp = await buyNft(smartAccount, listingId, price);
-    try {
-      if (resp.hash) {
-        setTxHash(resp.hash);
-        const result = await fetch(
-          'https://db-graph-backend.onrender.com/api/update-subscription',
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              tokenId: tokenId,
-              wallet_address: smartAddress,
-            }),
-          }
-        );
-        setProgress(66);
-        const data = await result.json();
-        if (data.success) {
-          setProgress(99);
-          toast.dismiss();
-          toast.success('NFT successfully purchased', toastStyles);
-        }
-      } else {
-        toast.dismiss();
-        toast.success('Something went wrong', toastStyles);
-      }
-    } catch (err) {
-      toast.dismiss();
-      toast.success('Something went wrong', toastStyles);
+  const { txHash, buyNFT } = useNFTSubscription(
+    {
+      amount: selectActiveData.price.toString(),
+      listingId: selectActiveData.listingId,
+      tokenId: selectActiveData.tokenId,
+      onSuccess() {
+        console.log("")
+      },
     }
-  };
+
+  )
   return (
     <TableContainer
       component={Paper}
@@ -166,16 +71,11 @@ export default function CustomizedTables() {
           icon={selectActiveData.icon}
           isOpen={isOpen}
           onClick={() => {
-            handleBuyNft(
-              selectActiveData.tokenId,
-              selectActiveData.listingPrice,
-              selectActiveData.price
-            );
+            buyNFT();
           }}
           onClose={() => {
             setIsOpen(false);
             setProgress(0);
-            setTxHash('');
             setSelectActiveData({
               icon: '',
               id: '',
@@ -205,7 +105,7 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row: any) => {
+          {data && data.length > 0 && data.map((row: any) => {
             const modelData = allModelData.filter(
               (item) => item.id.toString() === row.model.modelId
             )[0];
@@ -230,6 +130,7 @@ export default function CustomizedTables() {
                           id: modelData.id.toString(),
                           tokenId: row.tokenId,
                           price: row.price,
+                          listingId: row.listingId,
                           icon: modelData.icon,
                           name: modelData.name,
                           listingPrice: row.price,

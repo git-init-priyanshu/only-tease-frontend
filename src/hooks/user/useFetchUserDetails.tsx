@@ -1,7 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
-import { API_URL, fetchJSON } from '@/utils';
+import { API_ROUTES, API_URL, fetchJSON } from '@/utils';
+import { allModelData } from '@/utils/modelData';
+
+const filterMatchingIds = (array1: any, array2: any) => {
+  const filteredArray = array1.filter((item1: any) => {
+    return array2.some((item2: any) => {
+      return item1.modelId === item2.id.toString() && !item1.isListed;
+    });
+  });
+
+  return filteredArray;
+};
 
 const useFetchUserDetails = (
   modelId?: string
@@ -11,7 +22,7 @@ const useFetchUserDetails = (
     queryKey: ["user-data", !!session.data, modelId],
     enabled: !!session.data,
     queryFn: async () => {
-      const data = await fetchJSON(API_URL + `/user-info-base?email=${session.data?.user.email}`, {
+      const data = await fetchJSON(API_URL + `/` + API_ROUTES.USER_INFO + `?email=${session.data?.user.email}`, {
         method: "GET"
       })
       if (data.success) {
@@ -20,12 +31,14 @@ const useFetchUserDetails = (
         }) => s.modelId.toString() === modelId?.toString())
         return {
           isFound: true,
+          subscriptions: filterMatchingIds(data.data.subscriptions, allModelData),
           isUnlocked: isUnlocked ?? false,
           open_ai_id: data.data.user.openAi_tokenId,
           ipfs: data.data.user.ipfs_url
         }
       } else if (data.message === 'User not found') {
         return {
+          subscriptions: [],
           isFound: false,
           isUnlocked: false,
         }

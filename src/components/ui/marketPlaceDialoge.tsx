@@ -1,7 +1,4 @@
 'use client';
-import useWeb3auth from '@/hooks/useWeb3auth';
-import { listNft } from '@/lib/func';
-import { toastStyles } from '@/lib/utils';
 import {
   Description,
   Dialog,
@@ -16,6 +13,10 @@ import { clsx } from 'clsx';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import { baseSepolia } from 'wagmi/chains';
+
+import useNFTListContract from '@/hooks/contracts/useListNFtContract';
+import { toastStyles } from '@/lib/utils';
 type props = {
   icon: any;
   name: string;
@@ -26,8 +27,11 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [listingPrice, setListingPrice] = React.useState<number>(0);
-  const [txHash, setTxHash] = useState('');
-  const { smartAccount, login } = useWeb3auth();
+
+  const { txHash, listNFT } = useNFTListContract({
+    amount: listingPrice.toString(),
+    tokenId: tokenId
+  })
 
   function open() {
     setIsOpen(true);
@@ -38,33 +42,9 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
 
   const handleListing = async () => {
     toast.loading('Listing your NFT', toastStyles);
-    login(1);
-    const resp = await listNft(smartAccount, tokenId, listingPrice);
-    if (resp.hash) {
-      const result = await fetch(
-        'https://db-graph-backend.onrender.com/api/list-subscription',
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            tokenId: tokenId,
-            price: listingPrice.toString(),
-            listingId: resp.listingId,
-          }),
-        }
-      );
-      const data = await result.json();
-      if (data.success) {
-        setTxHash(resp.hash);
-        toast.dismiss();
-        toast.success('NFT listed successfully 🚀', toastStyles);
-      }
-    } else {
-      toast.dismiss();
-      toast.success('Something went wrong', toastStyles);
-    }
+    await listNFT()
+    toast.remove()
+    toast.success('Listed your NFT', toastStyles);
   };
   return (
     <>
@@ -139,7 +119,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                       {txHash ? (
                         <div className='h-[100px] w-full flex items-center justify-center'>
                           <a
-                            href={'https://sepolia.etherscan.io/tx/' + txHash}
+                            href={baseSepolia.blockExplorers.default.url + '/tx/' + txHash}
                             target='_blank'
                             className='underline'
                           >

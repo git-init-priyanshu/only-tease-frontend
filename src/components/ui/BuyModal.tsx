@@ -6,6 +6,7 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import Image from 'next/image';
+import { baseSepolia } from 'wagmi/chains';
 
 import { cn } from '@/lib/utils';
 
@@ -127,7 +128,7 @@ const BuyModal = ({
                     {txHash !== '' ? (
                       <div className='h-[100px] w-full flex items-center justify-center'>
                         <a
-                          href={'https://sepolia.etherscan.io/tx/' + txHash}
+                          href={baseSepolia.blockExplorers.default.url + "/tx/" + txHash}
                           target='_blank'
                           className='underline'
                         >

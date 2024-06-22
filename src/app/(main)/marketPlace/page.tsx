@@ -7,7 +7,7 @@ import CustomizedTables from '@/components/ui/marketPlaceTable';
 import SwiperCoverflow from '@/components/ui/swiper';
 import YourCollection from '@/components/ui/yourCollectionComponent';
 
-import { MarketData } from '@/utils/natworkData';
+import { coinData } from '@/utils/natworkData';
 
 function Page() {
   const [collection, setCollection] = useState('Your Collection');
@@ -15,7 +15,7 @@ function Page() {
     <div className=' border-l border  flex gap-10 flex-col w-full items-start py-6 overflow-x-hidden'>
       <SwiperCoverflow />
       <div className=' flex static    gap-3 ml-12'>
-        {MarketData.map((coin) => {
+        {coinData.map((coin) => {
           return (
             <button
               className='group/button relative inline-flex h-10 w-10 items-center gap-4 justify-center overflow-hidden rounded-lg bg-transparent font-medium text-white transition-all duration-300 hover:w-24'
@@ -35,19 +35,17 @@ function Page() {
         <div className='flex text-white  justify-around px-10 pb-6 '>
           <span
             onClick={() => setCollection('Your Collection')}
-            className={`${
-              collection === 'Your Collection'
+            className={`${collection === 'Your Collection'
                 ? 'text-fuchsia-500'
                 : 'text-white'
-            } cursor-pointer font-bold text-xl`}
+              } cursor-pointer font-bold text-xl`}
           >
             Your Collection
           </span>
           <span
             onClick={() => setCollection('Buy Nft')}
-            className={`${
-              collection === 'Buy Nft' ? 'text-fuchsia-500' : 'text-white'
-            } cursor-pointer font-bold text-xl`}
+            className={`${collection === 'Buy Nft' ? 'text-fuchsia-500' : 'text-white'
+              } cursor-pointer font-bold text-xl`}
           >
             Buy Collection
           </span>

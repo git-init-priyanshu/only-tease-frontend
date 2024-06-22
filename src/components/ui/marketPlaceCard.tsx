@@ -28,7 +28,6 @@ const MarketPlaceCard = ({
           throw new Error('Failed to fetch data');
         }
         const data = await response.json();
-        console.log(data);
         setTeaseData(data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -226,11 +225,10 @@ export const MarketPlaceCard2 = ({
         <motion.div className=' w-full z-50 p-1  h-full flex flex-col items-center justify-end'>
           <div className='px-3 w-full flex items-center justify-center pb-2'>
             <button
-              className={`w-[80%] mx-auto h-[45px] z-20 relative rounded-xl ${
-                buttonText === 'Accept the call 📞'
-                  ? 'bg-green-500 hover:bg-green-600'
-                  : 'bg-[#fb0393] hover:bg-opacity-80'
-              } bg-opacity-45`}
+              className={`w-[80%] mx-auto h-[45px] z-20 relative rounded-xl ${buttonText === 'Accept the call 📞'
+                ? 'bg-green-500 hover:bg-green-600'
+                : 'bg-[#fb0393] hover:bg-opacity-80'
+                } bg-opacity-45`}
               onMouseEnter={() => setButtonText('🎲 Try your luck 🌟')} // Change text on hover
               onMouseLeave={() => setButtonText('Accept the call 📞')} // Revert text on mouse leave
             >

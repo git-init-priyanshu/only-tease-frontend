@@ -34,6 +34,7 @@ export const createFetchOptions = (
 export enum API_ROUTES {
   PURCHASE_SUBSCRIPTION_BASE = 'purchase-subscription-base',
   LIST_SUBSCRIPTION_BASE = 'list-subscription-base',
+  LIST_SUBSCRIPTIONS = 'listed-subscriptions-base',
   USER_INFO = 'user-info-base',
   UPDATE_SUBSCRIPTION_BASE = 'update-subscription-base',
 }

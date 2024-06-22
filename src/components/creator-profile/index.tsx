@@ -24,6 +24,8 @@ const CreatorProfile = ({ params }: Props) => {
 
   const isUnlocked2 = data?.isUnlocked ?? false
 
+  console.log(isUnlocked2, "isUnlocked2");
+
 
   const fetchModalFees = async () => {
     const data = await getModalPayment(modelData.id);
@@ -45,7 +47,7 @@ const CreatorProfile = ({ params }: Props) => {
             name={modelData.name}
             modelFees={modelFees}
             modelId={modelData.id}
-            isUnlocked={isUnlocked2}
+            isUnlocked={data?.isUnlocked ?? false}
             setIsUnlocked={setIsUnlocked}
           />
         </div>
@@ -54,7 +56,7 @@ const CreatorProfile = ({ params }: Props) => {
           modelData={{ ...modelData, likes: 0, index: 0 }}
           modelFees={modelFees}
           setIsUnlocked={setIsUnlocked}
-          isUnlocked={isUnlocked2}
+          isUnlocked={data?.isUnlocked ?? false}
         />
       </div>
       <div className='px-10 hidden lg:block col-span-2'>
