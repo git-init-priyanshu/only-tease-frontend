@@ -8,21 +8,8 @@ import {
 } from '@headlessui/react';
 import { signIn, useSession } from 'next-auth/react';
 import { Dispatch, SetStateAction, memo } from 'react';
-import { createPublicClient } from 'viem';
-import { http, useAccount } from 'wagmi';
-import { baseSepolia } from 'wagmi/chains';
-import { useWriteContracts } from 'wagmi/experimental';
 
-import { usePaymasterBundlerContract } from '@/hooks/usePaymasterBundlerContract';
-import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
-
-import { isLocal } from '@/constant/env';
-
-// Use the Paymaster Proxy when deployed.
-const isLocalEnv = isLocal;
-export const defaultUrl = isLocalEnv
-  ? process.env.NEXT_PUBLIC_PAYMASTER_URL
-  : `http://localhost:3000/api/paymaster-proxy`;
+import useUserOnBoarding from '@/hooks/contracts/useUserOnboarding';
 
 
 const GoogleLogo = () => (
@@ -57,112 +44,14 @@ function GoogleSignIn({
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { data: session } = useSession();
-  const { address } = useAccount();
-  const { refetch } = useFetchUserDetails()
-
-
-  const register = async () => {
-    const fetcher = await fetch(
-      'https://open-ai-avatar-nft-gen.onrender.com/create-nft-pin-metadata',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: session?.user.name,
-          description:
-            'Welcome to Onlytease, with this NFT you gain access to our exclusive content! Enjoy (:',
-        }),
-      }
-    );
-    const resp = await fetcher.json();
-    if (resp.success) {
-      //call register api here
-      const publicClient = createPublicClient({
-        chain: baseSepolia,
-        transport: http('https://sepolia.base.org	'),
-      });
-      debugger
-      const tokenId = await publicClient.readContract({
-        address: contract.address,
-        abi: contract.abi,
-        functionName: 'getTokenId',
-      });
-      const reps = await fetch(
-        'https://db-graph-backend.onrender.com/api/register',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: session?.user.name,
-            email: session?.user.email,
-            wallet_address: address,
-            ipfs_url: resp.metadataIPFSUrl,
-            openAi_tokenId: tokenId.toString(),
-          }),
-        }
-      );
-      const data = await reps.json();
-      if (data.success) {
-        refetch().then(() => {
-          close()
-        });
-      }
-    }
-  }
-
-  const { writeContracts } = useWriteContracts({
-    mutation: {
-      onSuccess: () => {
-        register()
-      }
-    }
-  });
-  const contract = usePaymasterBundlerContract();
-
-  const createNft = async (name: string) => {
-    const res = await fetch(
-      'https://open-ai-avatar-nft-gen.onrender.com/generate-avatar-openAI',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: name }),
-      }
-    );
-    const data = await res.json();
-    // const data = {
-    //   success: true,
-    // };
-    if (data.success) {
-      writeContracts(
-        {
-          contracts: [
-            {
-              address: contract.address,
-              abi: contract.abi,
-              functionName: 'sendRequest',
-              args: [BigInt(85), [name], BigInt(300000)],
-            },
-          ],
-          capabilities: {
-            paymasterService: {
-              url: defaultUrl,
-            },
-          },
-        }
-      );
-    }
-  };
-
-
   function close() {
     setIsOpen(false);
   }
+  const { onBoarding } = useUserOnBoarding({
+    onSuccess: () => {
+      close()
+    }
+  })
 
   return (
     <Transition appear show={isOpen}>
@@ -209,7 +98,7 @@ function GoogleSignIn({
                   ) : (
                     <Button
                       className='inline-flex disabled:cursor-not-allowed items-center bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
-                      onClick={() => createNft(session.user.name)}
+                      onClick={() => onBoarding()}
                     >
                       Complete onboarding
                     </Button>

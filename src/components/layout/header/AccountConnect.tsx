@@ -1,5 +1,5 @@
 import { ConnectAccount } from '@coinbase/onchainkit/wallet';
-import { useAccount, useChainId, useConnect, useDisconnect } from 'wagmi';
+import { useAccount, useChainId, useDisconnect } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
 
@@ -11,7 +11,6 @@ import { baseSepolia } from 'wagmi/chains';
  */
 function AccountConnect() {
   const account = useAccount();
-  const { status } = useConnect();
   const { disconnect } = useDisconnect();
   const chainId = useChainId();
 

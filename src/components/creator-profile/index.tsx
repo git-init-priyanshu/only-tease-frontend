@@ -1,11 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import toast from 'react-hot-toast';
 
-import useGlobalStore from '@/hooks/store/useGlobalStore';
-import useWeb3auth from '@/hooks/useWeb3auth';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 import { getModalPayment } from '@/lib/func';
-import { toastStyles } from '@/lib/utils';
 
 import { MarketPlaceCard2 } from '@/components/ui/marketPlaceCard';
 
@@ -15,47 +12,25 @@ import RightSideBar from '@/app/(main)/profile/(components)/rightSideBar';
 import { Props } from '@/app/(main)/profile/[id]/page';
 import NotFound from '@/app/not-found';
 import { allModelData } from '@/utils/modelData';
+
 const CreatorProfile = ({ params }: Props) => {
   const [modelFees, setModelFees] = useState<number>(0);
   const [isUnlocked, setIsUnlocked] = useState<boolean>(false);
   const modelData = allModelData.filter((item) => item.slug === params.id)[0];
-  const { address } = useWeb3auth();
+
+  const { data } = useFetchUserDetails(
+    modelData.id.toString()
+  )
+
+  const isUnlocked2 = data?.isUnlocked ?? false
+
 
   const fetchModalFees = async () => {
     const data = await getModalPayment(modelData.id);
-
     setModelFees(parseInt(data));
   };
-  const fetchStatus = async (address: string) => {
-    // const res = await balanceOffModel(provider, modelData.id.toString());
-    // setIsUnlocked(res);
-    try {
-      const resp = await fetch(
-        `https://db-graph-backend.onrender.com/api/user-info?wallet_address=${address}`,
-        {
-          method: 'GET',
-        }
-      );
-      const data = await resp.json();
 
-      if (data.success) {
-        const userData = data.data.subscriptions?.some(
-          (item: any) => item.modelId === modelData.id.toString()
-        );
-        if (userData) {
-          setIsUnlocked(true);
-        }
-      }
-    } catch (err) {
-      toast.dismiss();
-      toast.error('Something went wrong', toastStyles);
-    }
-  };
-  const { smartAddress } = useGlobalStore();
   React.useEffect(() => {
-    if (smartAddress) {
-      fetchStatus(smartAddress);
-    }
     fetchModalFees();
   }, []);
 
@@ -70,7 +45,7 @@ const CreatorProfile = ({ params }: Props) => {
             name={modelData.name}
             modelFees={modelFees}
             modelId={modelData.id}
-            isUnlocked={isUnlocked}
+            isUnlocked={isUnlocked2}
             setIsUnlocked={setIsUnlocked}
           />
         </div>
@@ -79,7 +54,7 @@ const CreatorProfile = ({ params }: Props) => {
           modelData={{ ...modelData, likes: 0, index: 0 }}
           modelFees={modelFees}
           setIsUnlocked={setIsUnlocked}
-          isUnlocked={isUnlocked}
+          isUnlocked={isUnlocked2}
         />
       </div>
       <div className='px-10 hidden lg:block col-span-2'>
@@ -88,7 +63,7 @@ const CreatorProfile = ({ params }: Props) => {
           name={modelData.name}
           modelFees={modelFees}
           modelId={modelData.id}
-          isUnlocked={isUnlocked}
+          isUnlocked={isUnlocked2}
           setIsUnlocked={setIsUnlocked}
         />
         <div className='h-[20px]' />

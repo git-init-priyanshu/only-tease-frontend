@@ -13,6 +13,7 @@ import { useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
 import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 import {
   batchSubscribeFor,
@@ -72,14 +73,17 @@ export default function MyModal({
   const [polygonTokensHash, setPolygonTokensHash] = useState('');
   const [nftTrx, setNftTrx] = useState('');
   const [progress, setProgress] = React.useState(0);
+  const { refetch } = useFetchUserDetails()
+
   const showMsgs = () => {
-    setProgress(33);
+    setProgress(100);
     toast.success('Payment completed successfully', toastStyles);
   };
 
-  const { purchaseSubscription, callsStatus } = useNftMarketPlaceAutomation({
+  const { purchaseSubscription, txHash, isLoading } = useNftMarketPlaceAutomation({
     amount: value.toString(),
-    modelId: modelId
+    modelId: modelId,
+    onSuccess: () => showMsgs()
   })
 
 
@@ -96,6 +100,7 @@ export default function MyModal({
     setIsOpen(false);
     setTestTokensBaseHash("")
     setWalletChosen('');
+    refetch()
     setProgress(0)
   }
   const [provider, setProvider] = useState<any>(undefined);
@@ -171,7 +176,7 @@ export default function MyModal({
     try {
       if (walletChosen.toLowerCase() === 'base') {
         setProgress(10)
-        purchaseSubscription()
+        await purchaseSubscription()
       } else if (walletChosen === 'MoonBeam') {
         setProgress(10);
         const resp = await batchSubscribeFor({
@@ -332,7 +337,7 @@ export default function MyModal({
     Polygon: `https://ccip.chain.link/tx/${Polygontrx}`,
     Ethereum: `${chainConfig[1].blockExplorerUrl}/tx/${chainlinkCrossTxn}`,
     Polygon_Zkevm: `${chainConfig[3].blockExplorerUrl}/tx/${chainlinkCrossTxn}`,
-    default: `${baseSepolia.blockExplorers.default.url}/tx/${batchGaslessTrx}`,
+    default: `${baseSepolia.blockExplorers.default.url}/tx/${txHash}`,
   };
 
   const transactionUrl =
@@ -378,7 +383,12 @@ export default function MyModal({
         <Dialog
           as='div'
           className='relative z-10 focus:outline-none'
-          onClose={close}
+          onClose={() => {
+            if (isLoading) {
+              return undefined
+            }
+            close()
+          }}
         >
           <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
             <div className='flex min-h-full items-center justify-center p-4'>
@@ -411,7 +421,7 @@ export default function MyModal({
                     )}
                     <div className='absolute left-1/2 top-[62%] -translate-x-1/2 -translate-y-1/2 w-full'>
                       {(approvetrx ||
-                        batchGaslessTrx ||
+                        batchGaslessTrx || txHash ||
                         nftTrx ||
                         avalancheCrossTxn ||
                         chainlinkCrossTxn ||

@@ -7,7 +7,8 @@ declare module 'next-auth' {
   type Session = {
     user: {
       /** The user's postal address. */
-      address: string;
+      name: string;
+      email: string;
     };
   };
 }
