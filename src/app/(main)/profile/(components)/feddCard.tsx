@@ -42,11 +42,11 @@ const FeedCard = ({
           <Image
             src={icon}
             alt='modelProfilePic'
-            className='w-10 h-10 rounded-full'
+            className='w-10 h-10 rounded-md'
           />
           <div className=' text-sm'>
-            <p>{name}</p>
-            <p>@{slug}</p>
+            <p className='text-[#333038] font-bold'>{name}</p>
+            <p className='text-[#333038]'>@{slug}</p>
           </div>
         </div>
         <svg
@@ -64,7 +64,7 @@ const FeedCard = ({
           />
         </svg>
       </div>
-      <p>I know what you're really looking for 💋</p>
+      <p className='text-[#49454F]'>I know what you're really looking for 💋</p>
       <div className='relative '>
         {isUnlocked ? (
           <Image
@@ -79,38 +79,6 @@ const FeedCard = ({
               alt='feedImage'
               className=' w-full object-cover rounded-md '
             />
-
-            {locked ? (
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='w-14 h-14 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-in-out'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z'
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth={1.5}
-                stroke='currentColor'
-                className='w-14 h-14 rounded-md absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-100 ease-in-out'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z'
-                />
-              </svg>
-            )}
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 'use client';
 import {
-  Button,
   Dialog,
   DialogPanel,
   Transition,
@@ -38,6 +37,7 @@ import { VanishInput } from '@/components/ui/vanishInput';
 
 import { morph } from '@/app/Providers';
 import { coinData } from '@/utils/natworkData';
+import Button from '@/components/buttons/Button';
 
 
 
@@ -345,11 +345,12 @@ export default function MyModal({
 
   return (
     <>
-      <button
+      <Button
         onMouseOver={() => setLocked && setLocked(false)}
         onMouseOut={() => setLocked && setLocked(true)}
         onClick={open}
-        className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+        className='flex items-center justify-center'
+      // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
       >
         <span className='absolute bottom-0 left-0 z-0 h-0 w-full bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
         <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
@@ -377,7 +378,7 @@ export default function MyModal({
             </span>
           ) : null}
         </span>
-      </button>
+      </Button>
 
       <Transition appear show={isOpen}>
         <Dialog

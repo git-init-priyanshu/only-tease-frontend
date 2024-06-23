@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import React from 'react';
 
 import CreatorProfile from '@/components/creator-profile';
 
@@ -32,7 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 const Page = ({ params }: Props) => {
-  return <CreatorProfile params={params} />;
+  return <div className='max-w-[1100px] mx-auto'>
+    <CreatorProfile params={params} />
+  </div>;
 };
 
 export default Page;

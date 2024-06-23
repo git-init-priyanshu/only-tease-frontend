@@ -163,7 +163,7 @@ export const MarketPlaceCard2 = ({
   // }, []);
   return (
     <div className='group wrapper z-10 relative overflow-hidden rounded-xl'>
-      <div className='relative z-0 h-[300px]'>
+      <div className='relative z-0 h-[350px]'>
         {/* Image */}
         <Image
           height={200}
@@ -171,7 +171,7 @@ export const MarketPlaceCard2 = ({
           src={image}
           priority
           alt='model'
-          className='absolute top-0 left-0 w-full h-full opacity-20 object-cover rounded-xl transition-opacity duration-300'
+          className='absolute top-0 left-0 w-full h-full opacity-60 object-cover rounded-xl transition-opacity duration-300'
         />
         {/* <div className='absolute top-0 left-1/2 -translate-x-1/2 mx-auto w-full p-1 text-white block'>
           <div className='flex items-center justify-center w-full pt-3 gap-3 pb-2'>
@@ -226,7 +226,7 @@ export const MarketPlaceCard2 = ({
           <div className='px-3 w-full flex items-center justify-center pb-2'>
             <button
               className={`w-[80%] mx-auto h-[45px] z-20 relative rounded-xl ${buttonText === 'Accept the call 📞'
-                ? 'bg-green-500 hover:bg-green-600'
+                ? 'bg-[#0051FE80] hover:bg-green-600'
                 : 'bg-[#fb0393] hover:bg-opacity-80'
                 } bg-opacity-45`}
               onMouseEnter={() => setButtonText('🎲 Try your luck 🌟')} // Change text on hover

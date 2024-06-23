@@ -28,24 +28,25 @@ const RightSideBar = ({
   return (
     <div className=' flex flex-col items-start gap-4 w-full  '>
       {!isUnlocked && (
-        <div className='bg-gradient-to-br from-[#9A3CFF] from-[0%] to-[#5C2499] to-[100%] rounded-md p-[0.8px] h-fit w-full  '>
-          <div className=' flex flex-col rounded-md items-center gap-4 p-10 bg-gradient-to-br from-[#291D31] form-[100%] via-[#190F1F] via-[50%] to-[#190F1F] to-[100%]'>
-            <h2 className='text-lg text-[#BF1396]'>
+        <div className='bg-white border border-[#9A3CFFB2] rounded-md p-[0.8px] h-fit w-full  '>
+          <div className=' flex flex-col rounded-md items-center gap-4 p-10 to-[100%]'>
+            <h2 className='text-lg text-[#0051FE] text-center'>
               Subscribe and get these benefits
             </h2>
             <div className='flex  text-start flex-col gap-2  w-full text-[#CEB9E9]'>
-              <p className='flex gap-4 items-center'>
+              <p className='flex gap-4 items-center text-[#49454F]'>
                 <Image src={TickIcon} alt='tickIcon' /> Unlock complete access{' '}
                 <br /> to this user's exclusive content{' '}
               </p>
-              <p className='flex gap-4 items-center'>
+              <p className='flex gap-4 items-center text-[#49454F]'>
                 <Image src={TickIcon} alt='tickIcon' /> Dive into Dm’s
               </p>
-              <p className='flex gap-4 items-center'>
+              <p className='flex gap-4 items-center text-[#49454F]'>
                 <Image src={TickIcon} alt='tickIcon' /> You have the freedom to
                 cancel <br /> your subscription anytime{' '}
               </p>
             </div>
+            <div className='mt-4' />
             <MyModal
               dialogFor='Subscribe Now for '
               value={modelFees}
@@ -57,21 +58,18 @@ const RightSideBar = ({
         </div>
       )}
 
-      <div className='bg-gradient-to-br from-[#9A3CFF] from-[0%] to-[#5C2499] to-[100%] rounded-md p-[0.8px] h-fit w-full    '>
-        <div className=' flex flex-col  rounded-md items-center gap-4 p-2 bg-gradient-to-br from-[#291D31] form-[100%] via-[#190F1F] via-[50%] to-[#190F1F] to-[100%]'>
-          <div className='text-[#CEB9E9]  text-sm flex gap-2  z-10'>
-
+      <div className='rounded-md p-[0.8px] h-fit w-full  bg-white border border-[#9A3CFFB2]   '>
+        <div className=' flex flex-col  rounded-md text-[#49454F] items-center gap-4 p-2  to-[100%]'>
+          <div className='text-[#FA78FF] mt-2 border-[2px] px-4 py-2 rounded-xl border-[#0051FE] text-sm flex gap-2  z-10'>
             <RippleLoader />
             Sale ends
             <CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} />
           </div>
           <ExclusiveCard name={name.split(" ")[0]} image={image} />
-
-
         </div>
       </div>
 
-      {!isUnlocked && (
+      {/* {!isUnlocked && (
         <div className='hidden md:block bg-gradient-to-br from-[#9A3CFF] from-[0%] to-[#5C2499] to-[100%] rounded-md p-[0.8px] h-fit w-full    '>
           <div className=' flex flex-col rounded-md items-center gap-4 p-10 bg-gradient-to-br from-[#291D31] form-[100%] via-[#190F1F] via-[50%] to-[#190F1F] to-[100%]'>
             <h2 className='text-xl text-[#BF1396]'>
@@ -99,7 +97,7 @@ const RightSideBar = ({
             />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
