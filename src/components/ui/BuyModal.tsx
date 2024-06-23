@@ -10,6 +10,7 @@ import { baseSepolia } from 'wagmi/chains';
 
 import { cn } from '@/lib/utils';
 
+import Button from '@/components/buttons/Button';
 import LinearWithValueLabel from '@/components/ui/progressBar';
 import { VanishInput } from '@/components/ui/vanishInput';
 
@@ -47,7 +48,7 @@ const BuyModal = ({
         className='relative z-10 focus:outline-none'
         onClose={onClose}
       >
-        <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
+        <div className='fixed inset-0 z-10 w-screen bg-black bg-opacity-60 overflow-y-auto'>
           <div className='flex min-h-full items-center justify-center p-4'>
             <TransitionChild
               enter='ease-out duration-300'
@@ -61,9 +62,9 @@ const BuyModal = ({
                 style={{
                   zIndex: 99999,
                 }}
-                className='w-full relative max-w-xl text-white z-50 space-y-10 rounded-xl bg-white/5 px-10 py-14 backdrop-blur-2xl'
+                className='w-full relative max-w-xl text-[#625B71]  z-50 space-y-10 rounded-xl bg-white px-10 py-5'
               >
-                <h1 className='text-2xl text-white'>Buy NFT</h1>
+                <h1 className='text-2xl '>Buy NFT</h1>
                 <div className=' flex justify-between'>
                   <div className='flex gap-2'>
                     <Image
@@ -139,15 +140,12 @@ const BuyModal = ({
                   </Field>
                 </div>
                 {txHash === '' && progress === 0 && (
-                  <button
-                    className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#CEB9E9] transition-all hover:border-red-500 active:scale-95'
+                  <Button
+                    className='h-[37px] w-full flex items-center justify-center'
                     onClick={onClick}
                   >
-                    <span className='absolute w-full bottom-0 left-0 z-0 h-0  bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
-                    <span className='relative w-full flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
-                      Buy NFT
-                    </span>
-                  </button>
+                    Buy NFT
+                  </Button>
                 )}
               </DialogPanel>
             </TransitionChild>

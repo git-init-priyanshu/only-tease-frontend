@@ -59,7 +59,7 @@ export const CardStack = ({
           >
 
             <div className="relative   font-normal rounded-md  text-neutral-200">
-              <div className='bg-gradient-to-br from-[#FB0393] from-[0%] to-[#950257] to-[100%] rounded-md p-[0.8px] h-fit w-full  '>
+              <div className='bg-white border border-[#FA78FF] to-[100%] rounded-md p-[0.8px] h-fit w-full  '>
                 <Image src={card.image} alt="" className="  w-[450px] h-[180px] rounded-md   object-cover " />
               </div>
               <div className=" bg-black w-full h-12 blur-sm bg-opacity-[60%] rounded-b-lg  absolute top-[80%] left-0   font-medium ">

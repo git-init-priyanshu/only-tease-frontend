@@ -90,10 +90,10 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
   return (
     <div
       ref={sidebarRef}
-      className={`fixed lg:relative z-20 top-[6%]  left-0 lg:left-[20%] h-full  lg:w-[25%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`fixed lg:sticky top-[0%] overflow-hidden left-0 lg:left-[20%] h-full  lg:w-[25%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
-      <div className='flex py-10 flex-col justify-between items-center gap-4 overflow-y-auto w-full h-full'>
+      <div className='flex pt-10 flex-col justify-between items-center gap-4 overflow-hidden w-full h-full'>
         <Image src="/images/onchain-summer.png" alt='onchain' width={213} height={178} />
         <div className='px-5 w-full'>
           <div className='h-[1px] bg-[#625B71] w-full' />
@@ -121,43 +121,38 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             />
           </svg>
         </div>
-        <ul className='text-lg text-[#625B71] capitalize gap-2 flex flex-col items-start justify-start '>
-          <Link href='/global'>
-            <li>🌍 Global </li>
-          </Link>
-          <Link href='/indian'>
-            <li className='flex cur items-center gap-1 justify-start'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='w-4'
-                viewBox='0 0 512 512'
-                id='india'
-              >
-                <path fill='#f0f0f0' d='M0 85.337h512v341.326H0z'></path>
-                <path fill='#ff9811' d='M0 85.337h512v113.775H0z'></path>
-                <path fill='#6da544' d='M0 312.888h512v113.775H0z'></path>
-                <circle cx='256' cy='256' r='43.896' fill='#0052b4'></circle>
-                <circle cx='256' cy='256' r='27.434' fill='#f0f0f0'></circle>
-                <path
-                  fill='#0052b4'
-                  d='m256 222.146 8.464 19.195 20.855-2.268L272.927 256l12.392 16.927-20.855-2.268L256 289.854l-8.464-19.195-20.855 2.268L239.073 256l-12.392-16.927 20.855 2.268z'
-                ></path>
-              </svg>
-              Indian
-            </li>
-          </Link>
-          <li className='gap-2 items-center justify-start'>⚡New creators</li>
-          <li>🫦 Flirting</li>
-          <li>💃 Dance</li>
-          <li>🗾 Asian</li>
-          <li className='flex gap-1 justify-center items-center'>
+        <div className='flex items-center justify-start gap-2 text-[#625B71] flex-wrap max-w-[90%] mx-auto'>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🌍 Global</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 flex items-center justify-center py-2'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='w-4'
+              viewBox='0 0 512 512'
+              id='india'
+            >
+              <path fill='#f0f0f0' d='M0 85.337h512v341.326H0z'></path>
+              <path fill='#ff9811' d='M0 85.337h512v113.775H0z'></path>
+              <path fill='#6da544' d='M0 312.888h512v113.775H0z'></path>
+              <circle cx='256' cy='256' r='43.896' fill='#0052b4'></circle>
+              <circle cx='256' cy='256' r='27.434' fill='#f0f0f0'></circle>
+              <path
+                fill='#0052b4'
+                d='m256 222.146 8.464 19.195 20.855-2.268L272.927 256l12.392 16.927-20.855-2.268L256 289.854l-8.464-19.195-20.855 2.268L239.073 256l-12.392-16.927 20.855 2.268z'
+              ></path>
+            </svg>
+            &nbsp;Indian
+          </button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🫦 Flirting</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>💃 Dance</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🗾 Asian</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🌇 Outdoor</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 flex items-center justify-center py-2'>
             <Image src={amFlag} alt='amflag' className='w-5' />
             American
-          </li>
-          <li>🌇 Outdoor</li>
-          <li>😈 ASMR</li>
-          <li>👀 VR cams</li>
-        </ul>
+          </button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>😈 ASMR</button>
+          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>👀 VR cams</button>
+        </div>
       </div>
     </div>
   );

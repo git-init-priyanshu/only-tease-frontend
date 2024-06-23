@@ -1,5 +1,6 @@
-import Button from '@/components/buttons/Button';
 import Image from 'next/image';
+
+import Button from '@/components/buttons/Button';
 type props = {
   image: any;
   name: string;
