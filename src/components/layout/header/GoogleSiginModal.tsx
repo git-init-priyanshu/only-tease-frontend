@@ -98,7 +98,7 @@ function GoogleSignIn({
                     <Button
                       disabled={isPending}
                       className='inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
-                      onClick={() => signIn("google")}
+                      onClick={() => mutateAsync()}
                     >
                       <GoogleLogo />
                       {isPending ? "Signing..." : "Sign in with Google"}

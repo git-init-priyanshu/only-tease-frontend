@@ -5,9 +5,8 @@ import { isLocal } from '@/constant/env';
 
 // Use the Paymaster Proxy when deployed.
 const isLocalEnv = isLocal;
-export const defaultUrl = isLocalEnv
-  ? process.env.NEXT_PUBLIC_PAYMASTER_URL
-  : `http://localhost:3000/api/paymaster-proxy`;
+
+export const defaultUrl = process.env.NEXT_PUBLIC_PAYMASTER_URL;
 
 export const publicClient = createPublicClient({
   chain: baseSepolia,
