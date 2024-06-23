@@ -9,6 +9,7 @@ import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 
 import { API_URL, createFetchOptions, defaultUrl, fetchJSON, OPEN_AI_API_URL, publicClient } from '@/utils';
 import { NULL_ADDRESS, USER_ONBOARDING_ADDRESS } from '@/utils/addresses';
+import { useMutation } from '@tanstack/react-query';
 
 export const useUserOnbordingContract = generateContractHook({
   abi: USER_ONBOARDING_ABI,
@@ -52,7 +53,7 @@ const useUserOnBoarding = ({ onSuccess }: {
   const session = useSession()
   const { refetch } = useFetchUserDetails()
   const userOnboardingContract = useUserOnbordingContract()
-  const { writeContractsAsync } = useWriteContracts()
+  const { writeContractsAsync, isPending: isContractPending } = useWriteContracts()
 
   const onBoarding = async () => {
     try {
@@ -92,8 +93,13 @@ const useUserOnBoarding = ({ onSuccess }: {
       console.error(error);
     }
   }
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["onboard"],
+    mutationFn: onBoarding
+  })
   return {
-    onBoarding
+    onBoarding: mutateAsync, isLoading: isContractPending || isPending
   }
 }
 

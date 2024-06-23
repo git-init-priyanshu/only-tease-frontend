@@ -11,6 +11,7 @@ import { Dispatch, SetStateAction, memo } from 'react';
 import useUserOnBoarding from '@/hooks/contracts/useUserOnboarding';
 
 import Button from '@/components/buttons/Button';
+import { useMutation } from '@tanstack/react-query';
 
 
 const GoogleLogo = () => (
@@ -45,10 +46,13 @@ function GoogleSignIn({
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { data: session } = useSession();
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: () => signIn("google")
+  })
   function close() {
     setIsOpen(false);
   }
-  const { onBoarding } = useUserOnBoarding({
+  const { onBoarding, isLoading } = useUserOnBoarding({
     onSuccess: () => {
       close()
     }
@@ -92,18 +96,20 @@ function GoogleSignIn({
                 <div className='mt-4 flex items-center justify-center'>
                   {!session ? (
                     <Button
+                      disabled={isPending}
                       className='inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
                       onClick={() => signIn("google")}
                     >
                       <GoogleLogo />
-                      Sign in with Google
+                      {isPending ? "Signing..." : "Sign in with Google"}
                     </Button>
                   ) : (
                     <Button
+                      disabled={isLoading}
                       className='inline-flex disabled:cursor-not-allowed items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
                       onClick={() => onBoarding()}
                     >
-                      Complete onboarding
+                      {isLoading ? "Onboarding..." : " Complete onboarding"}
                     </Button>
                   )}
                 </div>
