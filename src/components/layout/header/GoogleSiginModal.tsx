@@ -83,9 +83,11 @@ function GoogleSignIn({
                 >
                   Complete user onboarding
                 </DialogTitle>
-                <p className='mt-2 text-sm/6 text-[#272C8A]'>
+                {!session ? <p className='mt-2 text-sm/6 text-[#272C8A]'>
                   Sign in with google to receive updates on subscriptions
-                </p>
+                </p> : <p className='mt-2 text-sm/6 text-[#272C8A]'>
+                  🎉Let's Mint Your Platform NFT! 🚀 Get Access Now! 🔑.
+                </p>}
                 <div className='h-[50px]'></div>
                 <div className='mt-4 flex items-center justify-center'>
                   {!session ? (
