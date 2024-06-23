@@ -1,12 +1,12 @@
-import msSethiGym from 'public/modelMarketPlaceImages/msSethiGym.jpg';
-import msSethiSummer from 'public/modelMarketPlaceImages/msSethisummer.jpg';
-import msSethiWinter from 'public/modelMarketPlaceImages/msSethiwinter.jpg';
-import poonamPandeyGym from 'public/modelMarketPlaceImages/poonamPandeyGym.jpg';
-import poonamPandeySummer from 'public/modelMarketPlaceImages/poonamPandeySummer.jpg';
-import poonamPandeyWinter from 'public/modelMarketPlaceImages/poonamPandeyWinter.jpg';
-import sherlynChopraGym from 'public/modelMarketPlaceImages/sherlynChopraGym.jpg';
-import sherlynChopraSummer from 'public/modelMarketPlaceImages/sherlynChoprasummer1.jpg';
-import sherlynChopraWinter from 'public/modelMarketPlaceImages/sherlynChopraWinter1.jpg';
+import msSethiGym from 'public/modelMarketPlaceImages/msSethiGym.webp';
+import msSethiSummer from 'public/modelMarketPlaceImages/msSethisummer.webp';
+import msSethiWinter from 'public/modelMarketPlaceImages/msSethiwinter.webp';
+import poonamPandeyGym from 'public/modelMarketPlaceImages/poonamPandeyGym.webp';
+import poonamPandeySummer from 'public/modelMarketPlaceImages/poonamPandeySummer.webp';
+import poonamPandeyWinter from 'public/modelMarketPlaceImages/poonamPandeyWinter.webp';
+import sherlynChopraGym from 'public/modelMarketPlaceImages/sherlynChopraGym.webp';
+import sherlynChopraSummer from 'public/modelMarketPlaceImages/sherlynChoprasummer1.webp';
+import sherlynChopraWinter from 'public/modelMarketPlaceImages/sherlynChopraWinter1.webp';
 
 import {
   indianModel1BannerImage,

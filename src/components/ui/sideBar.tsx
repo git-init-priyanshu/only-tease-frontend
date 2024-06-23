@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import amFlag from 'public/images/americaFlagIcon.png';
+import { usePathname, useRouter } from 'next/navigation';
+import amFlag from 'public/images/americaFlagIcon.webp';
 import React, { useEffect, useRef } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -68,6 +68,7 @@ type props = {
 
 const SideBar = ({ isOpen, setIsOpen }: props) => {
   const sidebarRef = useRef(null);
+  const navigation = useRouter()
 
   const handleEscKey = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
@@ -90,11 +91,13 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
   return (
     <div
       ref={sidebarRef}
-      className={`fixed lg:sticky top-[0%] overflow-hidden left-0 lg:left-[20%] h-full  lg:w-[25%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`fixed lg:sticky top-[0%] overflow-hidden left-0 lg:left-[19%] h-full  lg:w-[24%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
     >
-      <div className='flex pt-10 flex-col justify-between items-center gap-4 overflow-hidden w-full h-full'>
-        <Image src="/images/onchain-summer.png" alt='onchain' width={213} height={178} />
+      <div className='flex pt-10 flex-col justify-between gap-4 overflow-hidden w-full h-full'>
+        <div className='flex items-center justify-center w-full'>
+          <Image src="/images/onchain-summer.webp" alt='onchain' width={213} height={178} />
+        </div>
         <div className='px-5 w-full'>
           <div className='h-[1px] bg-[#625B71] w-full' />
         </div>
@@ -121,9 +124,14 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             />
           </svg>
         </div>
-        <div className='flex items-center justify-start gap-2 text-[#625B71] flex-wrap max-w-[90%] mx-auto'>
-          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🌍 Global</button>
-          <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 flex items-center justify-center py-2'>
+        <p className='text-[#0051FE] underline text-[16px] -mt-3 pl-5 font-semibold'> Country</p>
+        <div className='flex items-start   justify-start gap-2 text-[#625B71] pl-4  flex-wrap max-w-[100%]'>
+          <button onClick={() => {
+            navigation.push("/feed?type=global")
+          }} className={cn('rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2')}>🌍 Global</button>
+          <button onClick={() => {
+            navigation.push("/feed?type=indian")
+          }} className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 flex items-center justify-center py-2'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='w-4'
@@ -142,6 +150,10 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             </svg>
             &nbsp;Indian
           </button>
+        </div>
+        <p className='text-[#0051FE] mt-2 underline text-[16px]  pl-5 font-semibold'> Catagories</p>
+        <div className='flex items-center pb-4 justify-start gap-2 text-[#625B71] pl-3 flex-wrap max-w-[90%] mx-auto'>
+
           <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🫦 Flirting</button>
           <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>💃 Dance</button>
           <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🗾 Asian</button>

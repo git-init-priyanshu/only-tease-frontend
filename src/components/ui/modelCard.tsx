@@ -31,12 +31,12 @@ const ModelCard = ({
   const [dialogFor, setDialogfor] = useState('Sale ends');
 
   return (
-    <div className='relative max-w-[285px] text-[#272C8A] bg-[#FFFFFF] border border-[#CAC4D0] pt-[10px] overflow-hidden rounded-xl'>
+    <div className='relative max-w-[285px] text-[#272C8A] p-2 bg-[#FFFFFF] border border-[#CAC4D0] pt-[10px] overflow-hidden rounded-xl'>
       <Image
         src={icon}
         priority
         alt='model'
-        className='w-[260px] h-[200px] mx-auto  rounded-t-lg'
+        className='w-[260px] h-[220px] mx-auto  rounded-t-lg'
       />
       <div className='flex flex-col gap-2 rounded-b-lg  justify-between p-3 '>
         <div className='text-[#272C8A]'>

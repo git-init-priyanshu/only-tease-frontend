@@ -98,7 +98,7 @@
   }
 
   .cursor-newtab {
-    cursor: url('/images/new-tab.png') 10 10, pointer;
+    cursor: url('/images/new-tab.webp') 10 10, pointer;
   }
 
   /* #region  /**=========== Typography =========== */

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import modelfeedImage from 'public/images/modelFeedImage.png';
-import modelFeedUnlockedImage from 'public/images/modelFeedUnlockedImage.png';
+import modelfeedImage from 'public/images/modelFeedImage.webp';
+import modelFeedUnlockedImage from 'public/images/modelFeedUnlockedImage.webp';
 import React, { useState } from 'react';
 
 import MyModal from '@/components/ui/dialog';

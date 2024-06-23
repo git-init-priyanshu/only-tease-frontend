@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import TickIcon from 'public/images/tickIcon.png';
+import TickIcon from 'public/images/tickIcon.webp';
 import React from 'react';
 
 import RippleLoader from '@/components/buttons/rippleLoader';

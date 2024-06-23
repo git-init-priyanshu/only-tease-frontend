@@ -1,10 +1,10 @@
 import Image from "next/image";
-import image1 from "public/screenSaver/image1.png"
-import image2 from "public/screenSaver/image2.png"
-import image3 from "public/screenSaver/image3.png"
-import image4 from "public/screenSaver/image4.png"
-import image5 from "public/screenSaver/image5.png"
-import image6 from "public/screenSaver/image6.png"
+import image1 from "public/screenSaver/image1.webp"
+import image2 from "public/screenSaver/image2.webp"
+import image3 from "public/screenSaver/image3.webp"
+import image4 from "public/screenSaver/image4.webp"
+import image5 from "public/screenSaver/image5.webp"
+import image6 from "public/screenSaver/image6.webp"
 import React from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 // Import Swiper React components

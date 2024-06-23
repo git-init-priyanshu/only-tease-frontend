@@ -12,7 +12,7 @@ import AccountConnect from "@/components/layout/header/AccountConnect";
 import GoogleSignIn from "@/components/layout/header/GoogleSiginModal";
 import Avatar from "@/components/ui/avatar";
 
-import logo from '../../../public/images/logoWithoutGradient.png';
+import logo from '../../../public/images/logoWithoutGradient.webp';
 
 type props = {
   isOpen: boolean;
