@@ -8,7 +8,8 @@
   @apply flex flex-grow;
 }
 .ock-connectaccount-button {
-  @apply inline-flex h-10 grow items-center justify-center gap-2 rounded-md bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] text-white px-4 py-2;
+  @apply inline-flex h-10 grow items-center justify-center gap-2 rounded-md text-white px-4 py-2;
+  background: linear-gradient(90deg, #161848 0%, #2c319e 100%);
 }
 .ock-connectaccount-inner {
   @apply text-sm font-medium leading-5 text-white;
@@ -97,7 +98,7 @@
   }
 
   .cursor-newtab {
-    cursor: url('/images/new-tab.png') 10 10, pointer;
+    cursor: url('/images/new-tab.webp') 10 10, pointer;
   }
 
   /* #region  /**=========== Typography =========== */

@@ -18,12 +18,10 @@ import { allModelData } from '@/utils/modelData';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#130D1A',
-    color: theme.palette.common.white,
+    color: '#130D1A',
   },
   [`&.${tableCellClasses.body}`]: {
-    backgroundColor: '#130D1A',
-    color: theme.palette.common.white,
+    color: '#130D1A',
     fontSize: 14,
   },
 }));
@@ -59,8 +57,11 @@ export default function CustomizedTables() {
   return (
     <TableContainer
       component={Paper}
-      className='w-[1100px]  bg-[#130D1A] text-white border-fuchsia-700 border'
-      sx={{ border: 'none' }}
+      style={{
+        borderRadius: "10px",
+        border: "2px solid #FA78FF "
+      }}
+      className='w-[1100px]  bg-black text-white border-fuchsia-700 border'
     >
       {' '}
       {selectActiveData.icon !== '' && (
@@ -95,10 +96,10 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow className=''>
             <StyledTableCell align='left'>#</StyledTableCell>
-            <StyledTableCell align='left'>collection</StyledTableCell>
-            <StyledTableCell align='right'>floor</StyledTableCell>
-            <StyledTableCell align='right'>floor&nbsp;1d</StyledTableCell>
-            <StyledTableCell align='right'>volume</StyledTableCell>
+            <StyledTableCell align='left'>Collection</StyledTableCell>
+            <StyledTableCell align='right'>Floor</StyledTableCell>
+            <StyledTableCell align='right'>Floor&nbsp;1d</StyledTableCell>
+            <StyledTableCell align='right'>Volume</StyledTableCell>
             <StyledTableCell align='right'>Top Offer</StyledTableCell>
             <StyledTableCell align='right'>Sales</StyledTableCell>
             <StyledTableCell align='right'>Listed</StyledTableCell>
@@ -153,7 +154,7 @@ export default function CustomizedTables() {
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   {parseInt(row.price)}
-                  <span className='text-slate-400'>USDC</span>
+                  <span>&nbsp;USDC</span>
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   <span className='text-green-500 items-center flex  justify-end gap-1'>
@@ -177,7 +178,7 @@ export default function CustomizedTables() {
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   {modelData.views}
-                  <span className='text-slate-400'>K</span>
+                  <span>K</span>
                 </StyledTableCell>
                 <StyledTableCell align='right'>
                   {parseInt(row.price) - 0.2} USDC

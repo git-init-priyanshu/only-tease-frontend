@@ -1,11 +1,12 @@
 {
-  "name": "ts-nextjs-tailwind-starter",
+  "name": "only-tease",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "convert-webp": "sh ./src/scripts/convert_to_webp.sh",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && pnpm format",
     "lint:strict": "eslint --max-warnings=0 src",

@@ -1,18 +1,18 @@
 'use client';
 
+import { useSession } from "next-auth/react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 
 import useFetchUserDetails from "@/hooks/user/useFetchUserDetails";
 
-import AccountConnect from '@/components/layout/header/AccountConnect';
+import AccountConnect from "@/components/layout/header/AccountConnect";
 import GoogleSignIn from "@/components/layout/header/GoogleSiginModal";
 import Avatar from "@/components/ui/avatar";
 
-import logo from '../../../public/images/logoWithoutGradient.png';
+import logo from '../../../public/images/logoWithoutGradient.webp';
 
 type props = {
   isOpen: boolean;
@@ -36,8 +36,10 @@ const Header = ({ isOpen, setIsOpen }: props) => {
   }, [address, status, userData?.isFound]);
 
 
+
+
   return (
-    <div className='w-full flex items-center justify-between bg-[#130D1A] px-6 py-4 lg:py-6 fixed top-0 z-50'>
+    <div className='w-full flex items-center border-[1px] border-t-0 border-r-0 h-[110px] border-l-0 border-[#FCC0FF] bg-[#F7F2FA] justify-between px-6 py-4 lg:py-4 fixed top-0 z-10'>
       <GoogleSignIn isOpen={isSignInOpen} setIsOpen={setIsSignInOpen} />
       <div className='text-white lg:hidden'>
         {!isOpen ? (
@@ -74,40 +76,15 @@ const Header = ({ isOpen, setIsOpen }: props) => {
           </svg>
         )}
       </div>
-      <div className='w-1/4 flex flex-col text-center'>
-        <Link href='/'>
+      <Link href='/'>
+        <div className='flex items-end justify-center bg-red-50 text-center'>
           <Image src={logo} priority alt='logo' width={200} height={100} />
-          <span className='text-[#CEB9E9] hidden sm:inline-block'>
-            only<span className='text-blue-500'>Fans</span> for Web3
-          </span>
-        </Link>
-      </div>
-      <div className='hidden md:block w-1/2'>
-        <div className='m-4 p-[0.8px] rounded-xl w-[80%] bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 relative'>
-          <input
-            placeholder='Search here'
-            className='text-[#CEB9E9] w-full h-10 bg-[#2B213B] outline-none focus:outline-none rounded-xl px-12'
-          />
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='w-6 h-6 absolute text-[#CEB9E9] top-0 translate-x-full translate-y-1/3'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'
-            />
-          </svg>
+          <div className='text-[#000] font-semibold -mb-2 hidden sm:inline-block'>
+            only<span className='text-[#272C8A]'>Fans</span> for <span className="text-[#272C8A]">Web3</span>
+          </div>
         </div>
-      </div>
-      <div className='flex items-center  justify-end gap-6  w-1/4 mx-4'>
-        <div className='flex items-center text-white justify-end'>
-          <AccountConnect />
-        </div>
+      </Link>
+      <div className='flex items-center  justify-end fixed right-0  space-x-2 mx-4'>
         {address && session && userData?.isFound && (
           <Avatar
             userName={session.user.name || ''}
@@ -116,6 +93,9 @@ const Header = ({ isOpen, setIsOpen }: props) => {
             avatarLoading={isLoading}
           />
         )}
+        <div className='flex items-center text-white justify-end'>
+          <AccountConnect />
+        </div>
       </div>
     </div>
   );

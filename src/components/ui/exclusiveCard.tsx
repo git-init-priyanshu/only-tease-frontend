@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import React from 'react';
+
+import Button from '@/components/buttons/Button';
 type props = {
   image: any;
   name: string;
@@ -7,21 +8,20 @@ type props = {
 const ExclusiveCard = ({ image, name }: props) => {
   return (
     <div className='flex flex-col items-end gap-3 p-1'>
-      <div className='flex gap-10 justify-between'>
-        <div className=' flex gap-5 justify-center'>
+      <div className='flex gap-8 justify-between'>
+        <div className=' flex justify-center'>
           <Image
             src={image}
             alt='logo'
-            width={48}
-            height={48}
-            className='w-12 h-12 rounded-md'
+            width={60}
+            height={60}
+            className='w-16 h-16 rounded-md'
           />
-
           <div className='flex gap-2 flex-col items-center justify-center'>
             <div className='flex flex-col gap-2'>
               <span>intimate(15% off for a week!)</span>
               <div className='flex gap-2 text-xs'>
-                <span className='px-2 bg-slate-600 flex  items-center  rounded-md text-white'>
+                <span className='px-2 bg-[#9CC4FF] flex  items-center  rounded-md text-white'>
                   {' '}
                   <svg
                     aria-label='USDC'
@@ -41,17 +41,17 @@ const ExclusiveCard = ({ image, name }: props) => {
                   </svg>
                   &nbsp;212.5
                 </span>
-                <span className='px-2 bg-slate-600  rounded-md text-white'>
-                  0/40 left
+                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
+                  0/40&nbsp;left
                 </span>
-                <span className='px-2 bg-slate-600  rounded-md text-white'>
+                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
                   31
                 </span>
-                <span className='px-2 bg-slate-600  rounded-md text-white'>
+                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
                   1
                 </span>
               </div>
-              <div className='leading-5'>
+              <div className='text-lg text-[#49454F] leading-5'>
                 <p>Catch a glimpse ;)</p>
                 <p>
                   original price:&nbsp;
@@ -75,7 +75,7 @@ const ExclusiveCard = ({ image, name }: props) => {
                 </p>
               </div>
             </div>
-            <ul className='text-xs list-disc '>
+            <ul className='text-lg list-disc w-full'>
               <li>Access my spicer exclusive content </li>
               <li>Chat with me</li>
               <li>10 min video call</li>
@@ -99,12 +99,7 @@ const ExclusiveCard = ({ image, name }: props) => {
           />
         </svg>
       </div>
-      <div className='text-sm '>
-        <span className='bg-fuchsia-500 rounded-lg px-2 py-1 text-white'>
-          Buy
-        </span>
-        {/* <span className='bg-fuchsia-500 rounded-lg px-2 py-1 text-white'>Sell</span> */}
-      </div>
+      <Button className='w-[80%] flex items-center justify-center mx-auto mt-2'>Buy</Button>
     </div>
   );
 };

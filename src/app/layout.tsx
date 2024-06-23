@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: [`${siteConfig.url}/images/blockTeaseLogo.png`],
+    images: [`${siteConfig.url}/images/blockTeaseLogo.webp`],
     type: 'website',
     locale: 'en_US',
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/blockTeaseLogo.png`],
+    images: [`${siteConfig.url}/images/blockTeaseLogo.webp`],
     // creator: '@th_clarence',
   },
   // authors: [

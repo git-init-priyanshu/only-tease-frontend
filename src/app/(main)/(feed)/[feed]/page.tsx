@@ -1,31 +1,43 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 
 import ModelCard from '@/components/ui/modelCard';
 
-import NotFound from '@/app/not-found';
 import { IndianModelCardData, modelCardData } from '@/utils/modelData';
+import { useSearchParams } from 'next/navigation';
 type Props = {
   params: {
     feed: string;
   };
 };
 const Page = ({ params }: Props) => {
-  const [defaultModel, setDefaultModel] = useState(params.feed);
 
-  const modelData =
-    defaultModel === 'indian' ? IndianModelCardData : modelCardData;
-
-  if (!defaultModel) <NotFound />;
+  const searchParams = useSearchParams()
+  console.log(searchParams.get("type"), "searchParams");
+  const type = searchParams.get("type") ?? "global"
   return (
-    <div className='md:border-l-2 w-full   md:border-l-[#433F48]'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 mt-4 p-3 xl:p-10'>
-        {modelData.map((item, index) => (
-          <React.Fragment key={index}>
-            <ModelCard {...item} index={index + 1} />
-          </React.Fragment>
-        ))}
-      </div>
+    <div className='w-full pt-5 max-w-[1200px] mx-auto'>
+      {type === "indian" ? <>
+        <p className='text-[#0051FE] underline text-[25px] mt-3 pl-4 font-semibold'> Indian Creators</p>
+        <div className='grid grid-cols-1 sm:grid-cols-2   lg:grid-cols-4 gap-2  p-3 xl:p-5'>
+          {IndianModelCardData.map((item, index) => (
+            <React.Fragment key={index}>
+              <ModelCard {...item} index={index + 1} />
+            </React.Fragment>
+          ))}
+        </div></> :
+        <> <p className='text-[#0051FE] underline text-[25px] mt-3 pl-4 font-semibold'> Global Creators</p>
+          <div className='grid grid-cols-1 sm:grid-cols-2   lg:grid-cols-4 gap-2  p-3 xl:p-5'>
+            {modelCardData.map((item, index) => (
+              <React.Fragment key={index}>
+                <ModelCard {...item} index={index + 1} />
+              </React.Fragment>
+            ))}
+          </div>
+        </>
+      }
+
+
     </div>
   );
 };

@@ -1,6 +1,5 @@
 'use client';
 import {
-  Button,
   Dialog,
   DialogPanel,
   Transition,
@@ -12,6 +11,9 @@ import toast from 'react-hot-toast';
 import { useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
+import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
+import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 import {
   batchSubscribeFor,
   chainLinkAutomationSubscription,
@@ -27,10 +29,8 @@ import {
   purchaseSubscriptionZkevm,
 } from '@/lib/func';
 import { cn, toastStyles } from '@/lib/utils';
-import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
-import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
-import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 
+import Button from '@/components/buttons/Button';
 import RippleLoader from '@/components/buttons/rippleLoader';
 import LinearWithValueLabel from '@/components/ui/progressBar';
 import RadioButton from '@/components/ui/radioGroup';
@@ -38,8 +38,6 @@ import { VanishInput } from '@/components/ui/vanishInput';
 
 import { morph } from '@/app/Providers';
 import { coinData } from '@/utils/natworkData';
-
-
 
 
 const subscriptionId = Math.floor(Math.random() * (1e12 - 1 + 1)) + 1;
@@ -345,13 +343,14 @@ export default function MyModal({
 
   return (
     <>
-      <button
+      <Button
         onMouseOver={() => setLocked && setLocked(false)}
         onMouseOut={() => setLocked && setLocked(true)}
         onClick={open}
-        className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+        className='flex items-center justify-center'
+      // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
       >
-        <span className='absolute bottom-0 left-0 z-0 h-0 w-full bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
+        <span className='absolute bottom-0 left-0 z-0 h-0 w-full  transition-all duration-200 group-hover/button:h-full' />
         <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
           {dialogFor === 'ends : 09h 36m 22s' ? <RippleLoader /> : null}
           {dialogFor}
@@ -377,7 +376,7 @@ export default function MyModal({
             </span>
           ) : null}
         </span>
-      </button>
+      </Button>
 
       <Transition appear show={isOpen}>
         <Dialog
@@ -390,7 +389,9 @@ export default function MyModal({
             close()
           }}
         >
-          <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
+          <div style={{
+            zIndex: 999999
+          }} className='fixed inset-0 w-screen bg-black bg-opacity-60 overflow-y-auto z-50'>
             <div className='flex min-h-full items-center justify-center p-4'>
               <TransitionChild
                 enter='ease-out duration-300'
@@ -400,9 +401,9 @@ export default function MyModal({
                 leaveFrom='opacity-100 transform-[scale(100%)]'
                 leaveTo='opacity-0 transform-[scale(95%)]'
               >
-                <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-white/5 p-10 backdrop-blur-2xl'>
-                  <h1 className='text-2xl text-white'>Subscribe</h1>
-                  <p className='text-white'>
+                <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-white text-[#272C8A] p-10 backdrop-blur-xl'>
+                  <h1 className='text-2xl '>Subscribe</h1>
+                  <p className=''>
                     Subscribe to get access to exclusive content
                   </p>
 
@@ -410,7 +411,7 @@ export default function MyModal({
                     {progress > 0 && progress < 99 && (
                       <span
                         className={cn(
-                          'absolute left-1/2 w-full text-md text-center top-[60%] text-white -translate-x-1/2 -translate-y-1/2 z-50'
+                          'absolute left-1/2 w-full text-md text-center top-[60%]  -translate-x-1/2 -translate-y-1/2 z-50'
                         )}
                       >
                         <VanishInput
@@ -435,7 +436,7 @@ export default function MyModal({
                             <a
                               href={transactionUrl}
                               target='_blank'
-                              className='flex items-center text-white gap-1 hover:underline'
+                              className='flex items-center gap-1 hover:underline'
                             >
                               {paymentSuccessMessage(walletChosen)}
                               <svg
@@ -496,7 +497,7 @@ export default function MyModal({
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensHash}`}
                             target='_blank'
-                            className='flex items-center text-white gap-1 hover:underline'
+                            className='flex items-center gap-1 hover:underline'
                           >
                             Test funds{' '}
                             <svg
@@ -527,7 +528,7 @@ export default function MyModal({
                           <a
                             href={`${chainConfig[3].blockExplorerUrl}/tx/${testTokensZekEvm}`}
                             target='_blank'
-                            className='flex items-center text-white gap-1 hover:underline'
+                            className='flex items-center gap-1 hover:underline'
                           >
                             Test funds{' '}
                             <svg
@@ -558,7 +559,7 @@ export default function MyModal({
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensBase}`}
                             target='_blank'
-                            className='flex items-center text-white gap-1 hover:underline'
+                            className='flex items-center  gap-1 hover:underline'
                           >
                             Test funds{' '}
                             <svg
@@ -626,7 +627,7 @@ export default function MyModal({
                                 setWalletChosen(coin.name);
                                 setLoadingState('Confirm Payment');
                               }}
-                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium text-white transition-all duration-300 hover:w-24 ${walletChosen === coin.name ? 'bg-gray-800' : ''
+                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium transition-all duration-300 hover:w-24 ${walletChosen === coin.name ? 'bg-gray-800' : ''
                                 }`}
                               key={coin.name}
                             >
@@ -664,7 +665,7 @@ export default function MyModal({
                         }
                         onClick={() => handleOperation(walletChosen)}
                         className={cn(
-                          `z-20 flex items-center justify-center w-full gap-2 rounded-md border-[#FB0393] bg-[#ff16b17c] hover:bg-[#ff16b1a2] py-2 px-10 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none  data-[open]:bg-[#fb039487] data-[focus]:outline-1 data-[focus]:outline-white`,
+                          `z-20 flex items-center justify-center w-full gap-2 rounded-md  py-2 px-10 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white`,
                           (!walletChosen ||
                             loadingState !== 'Confirm Payment') &&
                           'cursor-not-allowed opacity-50 '

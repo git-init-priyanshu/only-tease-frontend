@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
+import Button from '@/components/buttons/Button';
 import RippleLoader from '@/components/buttons/rippleLoader';
 import CountdownTimer from '@/components/ui/timer';
 
@@ -30,28 +31,23 @@ const ModelCard = ({
   const [dialogFor, setDialogfor] = useState('Sale ends');
 
   return (
-    <div className='z-10 relative text-[#CEB9E9] overflow-hidden rounded-xl'>
-      <div className=' z-0 h-[200px] '>
-
-      </div>
+    <div className='relative max-w-[285px] text-[#272C8A] p-2 bg-[#FFFFFF] border border-[#CAC4D0] pt-[10px] overflow-hidden rounded-xl'>
       <Image
         src={icon}
         priority
-
         alt='model'
-        className='absolute object-cover -z-10 top-1/3 -translate-x-1/2 -translate-y-1/2 left-1/2  w-full h-[400px]     rounded-t-lg'
+        className='w-[260px] h-[220px] mx-auto  rounded-t-lg'
       />
-      <div className=' z-20 flex flex-col gap-2 rounded-b-lg  justify-between p-3 bg-[#2B213B] '>
-        <div className='text-[#CEB9E9]'>
-
+      <div className='flex flex-col gap-2 rounded-b-lg  justify-between p-3 '>
+        <div className='text-[#272C8A]'>
           <div className='flex items-center gap-3 pb-2 '>
-            <div className=' w-[40px] h-[40px] bg-white rounded-full'>
+            {/* <div className=' w-[40px] h-[40px] bg-white rounded-full'>
               <Image src={icon} alt='model icon' className='rounded-full w-full h-full object-cover' />
-            </div>
-
-            <p className='capitalize text-sm flex gap-1 justify-center items-center'>{name.split(" ")[0]}.Tease <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-            </svg>
+            </div> */}
+            <p className='capitalize text-lg font-semibold flex gap-1 justify-center items-center'>{name.split(" ")[0]}.Tease
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+              </svg>
             </p>
           </div>
 
@@ -107,18 +103,18 @@ const ModelCard = ({
           </div>
           <div className='w-full'>
             <Link href={`/profile/${slug}`}>
-              <button
+              <Button
                 onMouseEnter={() => setDialogfor('  View Full profile   ')}
                 onMouseLeave={() => setDialogfor('Sale ends')}
-                className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#CEB9E9] transition-all hover:border-red-500 active:scale-95'
+                className='!text-xs w-full py-2'
               >
                 <span className='absolute w-full bottom-0 left-0 z-0 h-0  bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
                 <span className='relative w-full flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
                   {dialogFor === 'Sale ends' ? <RippleLoader /> : null}
                   {dialogFor}
-                  {dialogFor === 'Sale ends' ? <CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} /> : null}
+                  {dialogFor === 'Sale ends' ? <div className='text-white'><CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} /></div> : null}
                 </span>
-              </button>
+              </Button>
             </Link>
           </div>
         </div>

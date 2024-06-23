@@ -15,8 +15,9 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { baseSepolia } from 'wagmi/chains';
 
-import { toastStyles } from '@/lib/utils';
+import Button from '@/components/buttons/Button';
 import useNFTListContract from '@/hooks/contracts/useListNFtContract';
+import { toastStyles } from '@/lib/utils';
 type props = {
   icon: any;
   name: string;
@@ -48,23 +49,19 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
   };
   return (
     <>
-      <button
+      <Button
         onClick={open}
-        className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+        className='w-full flex items-center justify-center'
       >
-        <span className='absolute bottom-0 left-0 z-0 h-0 w-full bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
-        <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
-          List your Nft
-        </span>
-      </button>
-
+        List your Nft
+      </Button>
       <Transition appear show={isOpen}>
         <Dialog
           as='div'
           className='relative z-10 focus:outline-none'
           onClose={close}
         >
-          <div className='fixed inset-0 z-10 w-screen overflow-y-auto'>
+          <div className='fixed inset-0 z-10 w-screen bg-black bg-opacity-60 overflow-y-auto'>
             <div className='flex min-h-full items-center justify-center p-4'>
               <TransitionChild
                 enter='ease-out duration-300'
@@ -74,8 +71,8 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                 leaveFrom='opacity-100 transform-[scale(100%)]'
                 leaveTo='opacity-0 transform-[scale(95%)]'
               >
-                <DialogPanel className='w-full max-w-xl text-white  space-y-10 rounded-xl bg-white/5 px-10 py-14 backdrop-blur-2xl'>
-                  <h1 className='text-2xl text-white'>Quick List</h1>
+                <DialogPanel className='w-full max-w-xl text-[#625B71]  space-y-10 rounded-xl bg-white px-10 py-5 '>
+                  <h1 className='text-2xl'>Quick List</h1>
                   <div className=' flex justify-between'>
                     <div className='flex gap-2'>
                       <Image
@@ -96,7 +93,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
 
                   <div className='w-full  '>
                     <Field>
-                      <Label className='flex items-center gap-x-2  font-bold text-lg text-white'>
+                      <Label className='flex items-center gap-x-2  font-bold text-lg '>
                         Set a price{' '}
                         <svg
                           xmlns='http://www.w3.org/2000/svg'
@@ -113,7 +110,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                           />
                         </svg>
                       </Label>
-                      <Description className='text-sm/6 text-white/50'>
+                      <Description className='text-sm/6 '>
                         Starting Price
                       </Description>
                       {txHash ? (
@@ -132,7 +129,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                             type='number'
                             placeholder='Amount'
                             className={clsx(
-                              'mt-3 block w-[80%] rounded-l-lg border border-[#dbd2d2] bg-white/5 py-1.5 px-3 text-sm/6 text-white',
+                              'mt-3 block w-[80%] rounded-l-lg border border-[#dbd2d2] bg-white/5 py-1.5 px-3 text-sm/6',
                               'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                             )}
                             onChange={(e: any) =>
@@ -145,7 +142,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                             )}
                           >
                             {' '}
-                            <p className='flex gap-2 items-center text-white '>
+                            <p className='flex gap-2 items-center text-[#625B71] '>
                               <svg
                                 aria-label='USDC'
                                 width='.4em'
@@ -176,15 +173,12 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                   </div>
 
                   {txHash === '' && (
-                    <button
-                      className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#CEB9E9] transition-all hover:border-red-500 active:scale-95'
+                    <Button
+                      className='h-[37px] w-full flex items-center justify-center'
                       onClick={handleListing}
                     >
-                      <span className='absolute w-full bottom-0 left-0 z-0 h-0  bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
-                      <span className='relative w-full flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
-                        Complete Listing
-                      </span>
-                    </button>
+                      Complete Listing
+                    </Button>
                   )}
                 </DialogPanel>
               </TransitionChild>

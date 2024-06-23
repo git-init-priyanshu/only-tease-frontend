@@ -5,9 +5,9 @@ import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
-import ClientComponent from '@/app/(main)/clientComponents';
-import Providers from '@/app/Providers';
 import { siteConfig } from '@/constant/config';
+import Providers from '@/app/Providers';
+import ClientComponent from '@/app/(main)/clientComponents';
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: [`${siteConfig.url}/images/blockTeaseLogo.png`],
+    images: [`${siteConfig.url}/images/blockTeaseLogo.webp`],
     type: 'website',
     locale: 'en_US',
   },
@@ -40,15 +40,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/blockTeaseLogo.png`],
-    // creator: '@th_clarence',
+    images: [`${siteConfig.url}/images/blockTeaseLogo.webp`],
   },
-  // authors: [
-  //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
-  //   },
-  // ],
 };
 
 export default function RootLayout({
@@ -58,10 +51,12 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className='w-full  bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] '>
-        <Providers>
-          <ClientComponent>{children}</ClientComponent>
-        </Providers>
+      <body className='w-full h-full bg-[#F7F2FA] '>
+        <div className='min-h-screen h-full w-full'>
+          <Providers>
+            <ClientComponent>{children}</ClientComponent>
+          </Providers>
+        </div>
       </body>
     </html>
   );

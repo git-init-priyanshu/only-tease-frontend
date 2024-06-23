@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogPanel,
   DialogTitle,
@@ -7,9 +6,11 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import { signIn, useSession } from 'next-auth/react';
-import { Dispatch, memo,SetStateAction } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 
 import useUserOnBoarding from '@/hooks/contracts/useUserOnboarding';
+
+import Button from '@/components/buttons/Button';
 
 
 const GoogleLogo = () => (
@@ -75,29 +76,29 @@ function GoogleSignIn({
               leaveFrom='opacity-100 transform-[scale(100%)]'
               leaveTo='opacity-0 transform-[scale(95%)]'
             >
-              <DialogPanel className='w-full max-w-md rounded-xl bg-white/5 p-6 backdrop-blur-2xl'>
+              <DialogPanel className='w-full max-w-md rounded-xl bg-white p-6 border border-[#CAC4D0]'>
                 <DialogTitle
                   as='h3'
-                  className='text-base/7 font-medium text-white'
+                  className='text-base/7 font-medium text-[#272C8A]'
                 >
                   Complete user onboarding
                 </DialogTitle>
-                <p className='mt-2 text-sm/6 text-white/50'>
+                <p className='mt-2 text-sm/6 text-[#272C8A]'>
                   Sign in with google to receive updates on subscriptions
                 </p>
                 <div className='h-[50px]'></div>
                 <div className='mt-4 flex items-center justify-center'>
                   {!session ? (
                     <Button
-                      className='inline-flex items-center bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
-                      onClick={() => signIn()}
+                      className='inline-flex items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
+                      onClick={() => signIn("google")}
                     >
                       <GoogleLogo />
                       Sign in with Google
                     </Button>
                   ) : (
                     <Button
-                      className='inline-flex disabled:cursor-not-allowed items-center bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
+                      className='inline-flex disabled:cursor-not-allowed items-center gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
                       onClick={() => onBoarding()}
                     >
                       Complete onboarding

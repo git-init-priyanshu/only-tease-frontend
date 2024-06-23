@@ -329,12 +329,12 @@ export default function RadioButton({ walletChosen, value }: { walletChosen: str
             <Radio
               key={plan.name}
               value={plan}
-              className="group relative flex cursor-pointer rounded-lg bg-white/5 py-2 px-2 text-white shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
+              className="group relative flex cursor-pointer rounded-lg bg-white/5 py-2 px-2 text-[#272C8A] shadow-md transition focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white data-[checked]:bg-white/10"
             >
               <div className="flex gap-1 text-sm w-full items-center justify-between">
                 {plan.icon}
                 <p>{plan.value}</p>
-                <p className="font-semibold  text-white">{plan.name}</p>
+                <p className="font-semibold  text-[#272C8A]">{plan.name}</p>
                 <CheckCircleIcon className="size-4  fill-white bg-[rgb(192,77,188)] rounded-full   opacity-0 transition group-data-[checked]:opacity-100" />
               </div>
             </Radio>

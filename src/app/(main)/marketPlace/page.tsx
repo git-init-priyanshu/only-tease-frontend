@@ -18,7 +18,7 @@ function Page() {
         {coinData.map((coin) => {
           return (
             <button
-              className='group/button relative inline-flex h-10 w-10 items-center gap-4 justify-center overflow-hidden rounded-lg bg-transparent font-medium text-white transition-all duration-300 hover:w-24'
+              className='group/button relative inline-flex h-10 w-10 items-center gap-4 justify-center overflow-hidden rounded-lg bg-transparent font-medium text-[#272C8A] transition-all duration-300 hover:w-24'
               key={coin.name}
             >
               <div className='absolute left-0 w-7 h-7 p-0.5  rounded-full'>
@@ -36,15 +36,15 @@ function Page() {
           <span
             onClick={() => setCollection('Your Collection')}
             className={`${collection === 'Your Collection'
-                ? 'text-fuchsia-500'
-                : 'text-white'
+              ? 'text-fuchsia-500'
+              : 'text-[#625B71]'
               } cursor-pointer font-bold text-xl`}
           >
             Your Collection
           </span>
           <span
             onClick={() => setCollection('Buy Nft')}
-            className={`${collection === 'Buy Nft' ? 'text-fuchsia-500' : 'text-white'
+            className={`${collection === 'Buy Nft' ? 'text-fuchsia-500' : 'text-[#625B71]'
               } cursor-pointer font-bold text-xl`}
           >
             Buy Collection

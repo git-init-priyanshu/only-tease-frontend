@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CountdownTimer = ({ duration = 9 * 3600 }) => {
   const [timeLeft, setTimeLeft] = useState(duration);
@@ -26,7 +26,7 @@ const CountdownTimer = ({ duration = 9 * 3600 }) => {
       .padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
   };
 
-  return <p className='text-white'> {formatTime(timeLeft)}</p>;
+  return <p className=''> {formatTime(timeLeft)}</p>;
 };
 
 export default CountdownTimer;

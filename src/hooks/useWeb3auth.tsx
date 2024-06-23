@@ -23,7 +23,7 @@ export const chainConfig = [
     blockExplorerUrl: 'https://testnet.snowtrace.io',
     ticker: 'AVAX',
     tickerName: 'AVAX',
-    logo: 'https://cryptologos.cc/logos/avalanche-avax-logo.png',
+    logo: 'https://cryptologos.cc/logos/avalanche-avax-logo.webp',
   },
   {
     chainNamespace: CHAIN_NAMESPACES.EIP155,
