@@ -58,7 +58,7 @@ const RightSideBar = ({
         </div>
       )}
 
-      <div className='rounded-md p-[0.8px] h-fit w-full  bg-white border border-[#9A3CFFB2]   '>
+      <div className='rounded-md p-[0.8px] h-fit w-full  bg-card_bg border border-[#9A3CFFB2]   '>
         <div className=' flex flex-col  rounded-md text-[#49454F] items-center gap-4 p-2  to-[100%]'>
           <div className='text-[#FA78FF] mt-2 border-[2px] px-4 py-2 rounded-xl border-[#0051FE] text-sm flex gap-2  z-10'>
             <RippleLoader />

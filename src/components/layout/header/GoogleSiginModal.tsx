@@ -7,7 +7,7 @@ import {
   TransitionChild,
 } from '@headlessui/react';
 import { signIn, useSession } from 'next-auth/react';
-import { Dispatch, memo,SetStateAction } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 
 import useUserOnBoarding from '@/hooks/contracts/useUserOnboarding';
 
@@ -90,7 +90,7 @@ function GoogleSignIn({
                   {!session ? (
                     <Button
                       className='inline-flex items-center bg-gradient-to-b from-[#FB0393] to-[#9A3CFF] gap-2 rounded-md  py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white'
-                      onClick={() => signIn()}
+                      onClick={() => signIn("google")}
                     >
                       <GoogleLogo />
                       Sign in with Google

@@ -3,6 +3,7 @@ import { useAccount, useChainId, useDisconnect } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
 import Button from '@/components/buttons/Button';
+import AccountMenu from '@/components/layout/header/AccountMenu';
 
 
 /**
@@ -51,17 +52,20 @@ function AccountConnect() {
         }
 
         if (account.status === 'connected') {
-          return <Button
-            onClick={() => disconnect()}
-          >
-            {account.address.slice(0, 4) + "..." + account.address.slice(account.address.length - 4, account.address.length - 1)}
-          </Button>
+          return <div className='flex items-center justify-end'>
+            <Button
+              onClick={() => disconnect()}
+            >
+              {account.address.slice(0, 4) + "..." + account.address.slice(account.address.length - 4, account.address.length - 1)}
+            </Button>
+            <AccountMenu />
+          </div>
         }
 
         return (
           <Button
           >
-            ....
+            Connecting....
           </Button>
         );
       })()}

@@ -26,7 +26,7 @@ const CountdownTimer = ({ duration = 9 * 3600 }) => {
       .padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
   };
 
-  return <p className='text-[#49454F]'> {formatTime(timeLeft)}</p>;
+  return <p className=''> {formatTime(timeLeft)}</p>;
 };
 
 export default CountdownTimer;
