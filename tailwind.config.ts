@@ -11,6 +11,8 @@ export default {
       backgroundImage: {
         link: 'linear-gradient(89.96deg, rgba(251, 3, 147, 0.51) -19.7%, rgba(251, 3, 147, 0) 100.08%)',
         button: 'linear-gradient(90deg, #161848 0%, #2C319E 100%)',
+        card_bg:
+          'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(252, 183, 255, 0.8) 100%)',
       },
       boxShadow: {
         link: '0px 0px 10px 0px #FB0393',
