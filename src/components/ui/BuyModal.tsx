@@ -62,7 +62,7 @@ const BuyModal = ({
                 style={{
                   zIndex: 99999,
                 }}
-                className='w-full relative max-w-xl text-[#625B71]  z-50 space-y-10 rounded-xl bg-white px-10 py-5'
+                className='w-full relative max-w-xl text-[#625B71]  z-50 space-y-10 rounded-xl bg-card_bg bg-white px-10 py-5'
               >
                 <h1 className='text-2xl '>Buy NFT</h1>
                 <div className=' flex justify-between'>

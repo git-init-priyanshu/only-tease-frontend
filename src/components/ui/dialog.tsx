@@ -401,7 +401,7 @@ export default function MyModal({
                 leaveFrom='opacity-100 transform-[scale(100%)]'
                 leaveTo='opacity-0 transform-[scale(95%)]'
               >
-                <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-white text-[#272C8A] p-10 backdrop-blur-xl'>
+                <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-card_bg bg-white text-[#272C8A] p-10'>
                   <h1 className='text-2xl '>Subscribe</h1>
                   <p className=''>
                     Subscribe to get access to exclusive content
@@ -675,7 +675,7 @@ export default function MyModal({
                       </Button>
                       {loadingState !== 'Confirm Payment' && (
                         <div
-                          className='text-end hover:underline cursor-pointer text-white'
+                          className='text-end hover:underline cursor-pointer text-[#625B71]'
                           onClick={async () => {
                             if (walletChosen === 'Ethereum') {
                               const resp = await getTestFundsWeb3Auth(

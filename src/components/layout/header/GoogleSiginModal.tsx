@@ -80,7 +80,7 @@ function GoogleSignIn({
               leaveFrom='opacity-100 transform-[scale(100%)]'
               leaveTo='opacity-0 transform-[scale(95%)]'
             >
-              <DialogPanel className='w-full max-w-md rounded-xl bg-white p-6 border border-[#CAC4D0]'>
+              <DialogPanel className='w-full max-w-md rounded-xl bg-card_bg bg-white p-6 border border-[#CAC4D0]'>
                 <DialogTitle
                   as='h3'
                   className='text-base/7 font-medium text-[#272C8A]'

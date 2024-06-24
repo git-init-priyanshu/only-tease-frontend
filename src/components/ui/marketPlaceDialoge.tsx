@@ -71,7 +71,7 @@ export default function ListingDialog({ icon, name, modelId, tokenId }: props) {
                 leaveFrom='opacity-100 transform-[scale(100%)]'
                 leaveTo='opacity-0 transform-[scale(95%)]'
               >
-                <DialogPanel className='w-full max-w-xl text-[#625B71]  space-y-10 rounded-xl bg-white px-10 py-5 '>
+                <DialogPanel className='w-full max-w-xl text-[#625B71]  space-y-10 rounded-xl bg-card_bg bg-white px-10 py-5 '>
                   <h1 className='text-2xl'>Quick List</h1>
                   <div className=' flex justify-between'>
                     <div className='flex gap-2'>
