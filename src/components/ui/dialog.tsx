@@ -75,7 +75,6 @@ export default function MyModal({
 
   const showMsgs = () => {
     setProgress(100);
-    setIsUnlocked(true)
     toast.success('Payment completed successfully', toastStyles);
   };
 
@@ -95,8 +94,13 @@ export default function MyModal({
   function open() {
     setIsOpen(true);
   }
+  console.log(txHash !== "", "txHash");
+
   function close() {
     setIsOpen(false);
+    if (txHash !== "") {
+      setIsUnlocked(true)
+    }
     setTestTokensBaseHash("")
     setWalletChosen('');
     refetch()
