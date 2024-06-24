@@ -11,7 +11,6 @@ type Props = {
   };
 };
 const Page = ({ params }: Props) => {
-
   const searchParams = useSearchParams()
   console.log(searchParams.get("type"), "searchParams");
   const type = searchParams.get("type") ?? "global"

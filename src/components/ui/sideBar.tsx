@@ -19,7 +19,7 @@ const sideBarContentGenral = [
   {
     tag: 'Creators',
     icon: FavIcon,
-    link: '#',
+    link: '/creators',
   },
   {
     tag: 'Favorites',
@@ -151,7 +151,7 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
             &nbsp;Indian
           </button>
         </div>
-        <p className='text-[#0051FE] mt-2 underline text-[16px]  pl-5 font-semibold'> Catagories</p>
+        <p className='text-[#0051FE] mt-2 underline text-[16px]  pl-5 font-semibold'> Categories</p>
         <div className='flex items-center pb-4 justify-start gap-2 text-[#625B71] pl-3 flex-wrap max-w-[90%] mx-auto'>
 
           <button className='rounded-lg bg-[#FA78FF] bg-opacity-30 hover:bg-opacity-60 transition-all px-3 py-2'>🫦 Flirting</button>
