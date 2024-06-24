@@ -1,7 +1,7 @@
 'use client';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import NextImage from '@/components/NextImage';
 import RippleLoader from '@/components/ui/RippleLoader';
 
 const Avatar = ({
@@ -51,11 +51,12 @@ const Avatar = ({
       rel='noreferrer'
       className=' flex flex-col gap-1 items-center justify-center cursor-pointer'
     >
-      <div className='rounded-full'>
+      <div className='rounded-full overflow-hidden'>
         {avatarLoading ? (
           <RippleLoader />
         ) : (
-          <Image
+          <NextImage
+            useSkeleton
             src={teaseData.image}
             alt={teaseData.name}
             width={40}
@@ -65,7 +66,7 @@ const Avatar = ({
         )}
       </div>
       <p className='text-[#0051FE1] text-sm font-semibold'>
-        {name.slice(0, teaseData.name.length - 4)}....
+        {name}
       </p>
     </a>
   );

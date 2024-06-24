@@ -75,6 +75,7 @@ export default function MyModal({
 
   const showMsgs = () => {
     setProgress(100);
+    setIsUnlocked(true)
     toast.success('Payment completed successfully', toastStyles);
   };
 

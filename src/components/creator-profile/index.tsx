@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 
-import { getModalPayment } from '@/lib/func';
 import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
+import { getModalPayment } from '@/lib/func';
 
 import { MarketPlaceCard2 } from '@/components/ui/marketPlaceCard';
 
@@ -23,8 +23,6 @@ const CreatorProfile = ({ params }: Props) => {
   )
 
   const isUnlocked2 = data?.isUnlocked ?? false
-
-  console.log(isUnlocked2, "isUnlocked2");
 
 
   const fetchModalFees = async () => {
@@ -47,7 +45,7 @@ const CreatorProfile = ({ params }: Props) => {
             name={modelData.name}
             modelFees={modelFees}
             modelId={modelData.id}
-            isUnlocked={data?.isUnlocked ?? false}
+            isUnlocked={data?.isUnlocked || isUnlocked}
             setIsUnlocked={setIsUnlocked}
           />
         </div>
@@ -56,7 +54,7 @@ const CreatorProfile = ({ params }: Props) => {
           modelData={{ ...modelData, likes: 0, index: 0 }}
           modelFees={modelFees}
           setIsUnlocked={setIsUnlocked}
-          isUnlocked={data?.isUnlocked ?? false}
+          isUnlocked={data?.isUnlocked || isUnlocked}
         />
       </div>
       <div className='px-10 hidden lg:block col-span-2'>
@@ -65,7 +63,7 @@ const CreatorProfile = ({ params }: Props) => {
           name={modelData.name}
           modelFees={modelFees}
           modelId={modelData.id}
-          isUnlocked={isUnlocked2}
+          isUnlocked={isUnlocked2 || isUnlocked}
           setIsUnlocked={setIsUnlocked}
         />
         <div className='h-[20px]' />

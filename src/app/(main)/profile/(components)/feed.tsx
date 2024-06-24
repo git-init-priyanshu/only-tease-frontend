@@ -28,14 +28,10 @@ type props = {
 const ModelFeed = ({
   modelData,
   modelFees,
+  isUnlocked,
   setIsUnlocked,
 }: props) => {
 
-  const { data } = useFetchUserDetails(
-    modelData.id.toString()
-  )
-
-  const isUnlocked = data?.isUnlocked ?? false
   return (
     <div className='w-full '>
       <div className='bg-white border border-[#9A3CFFB2] rounded-md p-[0.8px] h-fit w-full  '>

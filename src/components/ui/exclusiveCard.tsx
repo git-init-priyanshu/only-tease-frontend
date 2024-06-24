@@ -15,11 +15,11 @@ const ExclusiveCard = ({ image, name }: props) => {
             alt='logo'
             width={60}
             height={60}
-            className='w-16 h-16 rounded-md'
+            className='w-[80px] h-[70px] mr-2 rounded-md'
           />
           <div className='flex gap-2 flex-col items-center justify-center'>
             <div className='flex flex-col gap-2'>
-              <span>intimate(15% off for a week!)</span>
+              <span>Intimate(15% off for a week!)</span>
               <div className='flex gap-2 text-xs'>
                 <span className='px-2 bg-[#9CC4FF] flex  items-center  rounded-md text-white'>
                   {' '}

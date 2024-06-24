@@ -36,7 +36,7 @@ const ModelCard = ({
         src={icon}
         priority
         alt='model'
-        className='w-[260px] h-[220px] mx-auto  rounded-t-lg'
+        className='w-[260px] h-[220px] aspect-square mx-auto  rounded-t-lg'
       />
       <div className='flex flex-col gap-2 rounded-b-lg  justify-between p-3 '>
         <div className='text-[#272C8A]'>

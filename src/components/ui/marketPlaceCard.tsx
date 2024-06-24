@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import ListingDialog from '@/components/ui/marketPlaceDialoge';
+import { allModelData } from '@/utils/modelData';
 
 const MarketPlaceCard = ({
   modelName,
@@ -15,27 +16,27 @@ const MarketPlaceCard = ({
   ipfsUrl: string;
   tokenId: string;
 }) => {
+  const teaseData = allModelData.find((s) => s.id.toString() === modelId.toString())
   const [isHovered, setIsHovered] = useState(false);
-  const [teaseData, setTeaseData] = useState({
-    name: '',
-    image: '',
-  });
-  useEffect(() => {
-    const fetchTeaseData = async (ipfs: string) => {
-      try {
-        const response = await fetch(ipfs);
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setTeaseData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
-    fetchTeaseData(ipfsUrl);
-  }, []);
+  // useEffect(() => {
+  //   const fetchTeaseData = async (ipfs: string) => {
+  //     try {
+  //       const response = await fetch(ipfs);
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch data');
+  //       }
+  //       const data = await response.json();
+  //       setTeaseData(data);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+
+  //   fetchTeaseData(ipfsUrl);
+  // }, []);
+
+  if (!teaseData) return null
   return (
     <div className='group wrapper z-10 relative overflow-hidden rounded-xl'>
       <div className='relative z-0 h-[300px]'>
@@ -43,7 +44,7 @@ const MarketPlaceCard = ({
         <Image
           height={200}
           width={200}
-          src={teaseData.image}
+          src={teaseData.icon}
           priority
           alt='model'
           className='absolute top-0 left-0 w-full h-full object-cover rounded-xl transition-opacity duration-300 opacity-100 group-hover:opacity-80'
@@ -56,7 +57,7 @@ const MarketPlaceCard = ({
               <Image
                 height={200}
                 width={200}
-                src={teaseData.image}
+                src={teaseData.icon}
                 alt='model icon'
                 className='w-full h-full object-cover'
               />
