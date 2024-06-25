@@ -52,7 +52,7 @@ const Avatar = ({
       className=' flex flex-col gap-1 items-center justify-center cursor-pointer'
     >
       <div className='rounded-full overflow-hidden'>
-        {avatarLoading ? (
+        {(avatarLoading || !openId || !ipfsUrl) ? (
           <RippleLoader />
         ) : (
           <NextImage
