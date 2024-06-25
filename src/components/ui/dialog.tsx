@@ -42,7 +42,7 @@ import { coinData } from '@/utils/natworkData';
 
 const subscriptionId = Math.floor(Math.random() * (1e12 - 1 + 1)) + 1;
 
-const months = [1, 2, 3]
+const months = [3, 6, 12]
 export default function MyModal({
   setLocked,
   dialogFor,
