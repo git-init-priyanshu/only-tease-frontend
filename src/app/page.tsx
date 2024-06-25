@@ -1,30 +1,32 @@
 'use client';
 
-import '@/lib/env';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import '@/lib/env';
 
 import Button from '@/components/buttons/Button';
 
 export default function HomePage() {
   const navigation = useRouter()
   return (
-    <main className='  text-[#AAAAAA] font-bold bg-[#F7F2FA] flex overflow-hidden items-start justify-end h-screen relative w-full '>
-      <Image src="/images/onchain.webp" width={800} height={200} alt='onchain' className='aspect-[1743/2048] absolute top-0 left-0 h-full' />
-      <div className='flex items-center flex-col pt-10 w-[70%] min-h-screen justify-between'>
-        <div className='flex items-start space-x-6 justify-center'>
-          <Image src="/images/Onchain-text.webp" className='aspect-[969/148]' width={500} height={100} alt='onchain' />
-          <Image src="/images/summer.webp" className='aspect-[969/148]' width={500} height={100} alt='onchain' />
+    <main className='text-[#AAAAAA] font-bold bg-[#F7F2FA] flex overflow-hidden items-start h-screen relative w-full'>
+      <div className='absolute top-0 left-0 h-full w-auto'>
+        <Image src="/images/onchain.webp" className='h-full w-auto' width={600} height={200} alt='onchain' />
+      </div>
+      <div className='flex items-center flex-col pt-10 min-h-screen mx-auto md:ml-[30vw] lg:ml-[50vw]'>
+        <div className='flex items-start space-x-6 justify-center z-10'>
+          <Image src="/images/Onchain-text.webp" className='aspect-[969/148]' width={300} height={100} alt='onchain' />
+          <Image src="/images/summer.webp" className='aspect-[969/148]' width={300} height={100} alt='onchain' />
         </div>
-        <div className='h-[700px] w-[500px] z-20 bg-card_bg rounded-[40px] ml-40  my-10'>
-          <div className='w-[296px] mt-10 h-[70px] mx-auto relative'>
+        <div className='p-10 z-20 bg-card_bg rounded-[40px] my-10'>
+          <div className='w-[296px] h-[70px] mx-auto relative'>
             <Image src="/images/onlyteaselogo.webp" fill alt='logo' />
           </div>
-          <p className='font-normal  text-center mt-4 text-[#1C1D40] text-[30px]'>"Empower your content,
+          <p className='font-normal text-center mt-4 text-[#1C1D40] text-2xl'>"Empower your content,
             redefine connection."</p>
-          <p className=' text-center mt-10 text-[#1C1D40] text-[20px] font-semibold'>We know you are Excited!</p>
-          <p className=' text-center text-[#1C1D40] text-[20px] font-semibold'>Simple Verification & you are sorted.</p>
-          <div className='w-[296px] mt-10 h-[274px] mx-auto relative'>
+          <p className=' text-center mt-6 text-[#1C1D40] text-xl font-semibold'>We know you are Excited!</p>
+          <p className=' text-center text-[#1C1D40] text-xl font-semibold'>Simple Verification & you are sorted.</p>
+          <div className='aspect-[296/274] mt-10 w-52 mx-auto relative'>
             <Image src="/images/qrcode.webp" fill alt='logo' />
           </div>
           <p className=' text-center mt-4 text-[#1C1D40] text-[20px] font-semibold'>Scan to verify 18+</p>
