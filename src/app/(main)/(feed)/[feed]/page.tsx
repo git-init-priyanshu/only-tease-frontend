@@ -5,12 +5,15 @@ import ModelCard from '@/components/ui/modelCard';
 
 import { IndianModelCardData, modelCardData } from '@/utils/modelData';
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 type Props = {
   params: {
     feed: string;
   };
 };
-const Page = ({ params }: Props) => {
+
+
+const CreatorsPage = ({ params }: Props) => {
   const searchParams = useSearchParams()
   console.log(searchParams.get("type"), "searchParams");
   const type = searchParams.get("type") ?? "global"
@@ -35,10 +38,14 @@ const Page = ({ params }: Props) => {
           </div>
         </>
       }
-
-
     </div>
   );
 };
+
+const Page = ({ params }: Props) => {
+  return <Suspense>
+    <CreatorsPage params={params} />
+  </Suspense>
+}
 
 export default Page;
