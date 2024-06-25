@@ -411,7 +411,7 @@ export default function MyModal({
                 <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-card_bg bg-white text-[#272C8A] p-10'>
                   <h1 className='text-2xl '>Subscribe</h1>
                   <div className='flex items-center py-2 justify-between'>
-                    <div className='text-xl font-semibold '>Autopay</div>
+                    <div className='text-xl font-semibold '>Autopay 🔁</div>
                     <div className='flex items-center space-x-2 justify-center'>
                       {months.map((s, index) => <div onClick={() => {
                         setSelectedMonth(s)
