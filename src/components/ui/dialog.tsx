@@ -577,7 +577,11 @@ export default function MyModal({
                         </div>
                       )}
                       {testTokensZekEvm && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${chainConfig[3].blockExplorerUrl}/tx/${testTokensZekEvm}`}
                             target='_blank'
@@ -608,7 +612,11 @@ export default function MyModal({
                         </div>
                       )}
                       {testTokensBase && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensBase}`}
                             target='_blank'
@@ -639,7 +647,11 @@ export default function MyModal({
                         </div>
                       )}
                       {polygonTokensHash && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${chainConfig[2].blockExplorerUrl}/tx/${polygonTokensHash}`}
                             target='_blank'
