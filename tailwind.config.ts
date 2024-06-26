@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        roboto: ['Roboto', 'sans-serif']
       },
       backgroundImage: {
         link: 'linear-gradient(89.96deg, rgba(251, 3, 147, 0.51) -19.7%, rgba(251, 3, 147, 0) 100.08%)',

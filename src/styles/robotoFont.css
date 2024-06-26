@@ -1,0 +1,10 @@
+/* styles/custom-font.css */
+@font-face {
+  font-family: 'YourCustomFont';
+  src: url('../../public/fonts/Roboto-Regular.ttf') format('ttf'),
+       url('../../public/fonts/Roboto-Light.ttf') format('ttf'),
+       url('../../public/fonts/Roboto-Medium.ttf') format('ttf'),
+       url('../../public/fonts/Roboto-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
