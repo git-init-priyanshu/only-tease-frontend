@@ -42,6 +42,7 @@ import { coinData } from '@/utils/natworkData';
 
 const subscriptionId = Math.floor(Math.random() * (1e12 - 1 + 1)) + 1;
 
+const months = [3, 6, 12]
 export default function MyModal({
   setLocked,
   dialogFor,
@@ -58,6 +59,7 @@ export default function MyModal({
   setIsUnlocked: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const { address } = useAccount()
+  const [selectedMonth, setSelectedMonth] = useState(months[0])
   const [isOpen, setIsOpen] = useState(false);
   const [walletChosen, setWalletChosen] = useState('');
   const [batchGaslessTrx, setBatchGaslessTrx] = useState('');
@@ -79,7 +81,7 @@ export default function MyModal({
   };
 
   const { purchaseSubscription, txHash, isLoading } = useNftMarketPlaceAutomation({
-    amount: value.toString(),
+    amount: (value * selectedMonth).toString(),
     modelId: modelId,
     onSuccess: () => showMsgs()
   })
@@ -410,6 +412,17 @@ export default function MyModal({
               >
                 <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-card_bg bg-white text-[#272C8A] p-10'>
                   <h1 className='text-2xl '>Subscribe</h1>
+                  <div className='flex items-center py-2 justify-between'>
+                    <div className='text-xl font-semibold '>Autopay 🔁</div>
+                    <div className='flex items-center space-x-2 justify-center'>
+                      {months.map((s, index) => <div onClick={() => {
+                        setSelectedMonth(s)
+                      }} className={cn('w-[60px] cursor-pointer  rounded-lg py-1 flex items-center justify-center  px-2',
+                        selectedMonth === s ? "bg-[#0051FE] text-white shadow-lg border border-[#0051FE]" : ""
+
+                      )} key={index}>{s}m</div>)}
+                    </div>
+                  </div>
                   <p className=''>
                     Subscribe to get access to exclusive content
                   </p>
