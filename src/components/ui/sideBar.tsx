@@ -211,7 +211,7 @@ export const SideBarSections = ({
               height={20}
             /> */}
             <p className={cn('group-hover:text-[#FB0393]', pathname === item.link && 'text-[#FB0393]')}>
-              {item.icon()}
+              {item.icon}
               {/* <svg
                 width={20}
                 height={22}

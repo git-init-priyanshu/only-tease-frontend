@@ -8,7 +8,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 import TextButton from '@/components/buttons/TextButton';
 
-import { allModelData } from "@/utils/modelData"
+import { modelCardData, allModelData } from "@/utils/modelData"
 
 import Bitcoin from '../../../../public/images/Bitcoin-amico 1.png';
 import Coins from '../../../../public/images/Coins-amico 1.png';
@@ -173,22 +173,12 @@ export default function Page() {
                 >
                   <CheckIcon className="hidden size-5 fill-pink-600 group-data-[checked]:block" />
                 </Checkbox>
-
                 <Image
                   src={currentModelData.image}
                   layout="fill"
-                  className='object-cover filter blur-xl'
+                  className='object-cover'
                   alt='model'
                 />
-                <div className='absolute inset-0 bg-gradient-to-t from-white to-transparent'></div>
-
-                <Image
-                  src={currentModelData.image}
-                  layout="fill"
-                  className='object-contain'
-                  alt='model'
-                />
-
                 <div className='absolute bottom-0 left-0 w-full p-2 text-white'>
                   <div className='flex items-center justify-start gap-3 pb-2 relative z-20'>
                     <div className='w-[50px] h-[50px] bg-white rounded-full overflow-hidden'>
