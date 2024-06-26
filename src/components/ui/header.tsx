@@ -85,9 +85,9 @@ const Header = ({ isOpen, setIsOpen }: props) => {
         </div>
       </Link>
       <div className='flex items-center  justify-end fixed right-0  space-x-2 mx-4'>
-        {address && session && userData?.isFound && (
+        {address && (
           <Avatar
-            userName={session.user.name || ''}
+            userName={session?.user.name || ''}
             openId={userData?.open_ai_id}
             ipfsUrl={userData?.ipfs}
             avatarLoading={isLoading}

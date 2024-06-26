@@ -4,16 +4,7 @@ import React from 'react';
 import ModelCard from '@/components/ui/modelCard';
 
 import { IndianModelCardData, modelCardData } from '@/utils/modelData';
-import { useSearchParams } from 'next/navigation';
-type Props = {
-  params: {
-    feed: string;
-  };
-};
-const Creators = ({ params }: Props) => {
-  const searchParams = useSearchParams()
-  console.log(searchParams.get("type"), "searchParams");
-  const type = searchParams.get("type") ?? "global"
+const Creators = () => {
   return (
     <div className='w-full pt-5 max-w-[1200px] mx-auto'>
       <p className='text-[#0051FE] underline text-[25px] mt-3 pl-4 font-semibold'> Indian Creators</p>
