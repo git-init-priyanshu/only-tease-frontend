@@ -8,7 +8,7 @@ import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts';
 
 import TextButton from '@/components/buttons/TextButton';
 
-import { modelCardData, allModelData } from "@/utils/modelData"
+import { allModelData } from "@/utils/modelData"
 
 import Bitcoin from '../../../../public/images/Bitcoin-amico 1.png';
 import Coins from '../../../../public/images/Coins-amico 1.png';
