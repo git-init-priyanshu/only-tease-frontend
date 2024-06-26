@@ -28,27 +28,27 @@ const RightSideBar = ({
   return (
     <div className=' flex flex-col items-start gap-4 w-full  '>
       {!isUnlocked && (
-        <div className='bg-white border border-[#9A3CFFB2] rounded-md p-[0.8px] h-fit w-full  '>
+        <div className='bg-white border border-[#9A3CFFB2] rounded-md p-[0.8px] h-fit w-full shadow-lg'>
           <div className=' flex flex-col rounded-md items-center gap-4 px-4 py-5 to-[100%]'>
-            <h2 className='text-lg text-[#0051FE] text-center'>
+            <h2 className='text-md text-[#0051FE] text-center'>
               Subscribe and get these benefits
             </h2>
-            <div className='flex  text-start flex-col gap-2  w-full text-[#CEB9E9]'>
-              <p className='flex gap-4 items-center text-[#49454F]'>
+            <div className='flex text-start flex-col gap-2 w-full text-[#CEB9E9]'>
+              <p className='flex gap-4 items-center text-[#49454F] text-md'>
                 <Image src={TickIcon} alt='tickIcon' /> Unlock complete access{' '}
                 <br /> to this user's exclusive content{' '}
               </p>
-              <p className='flex gap-4 items-center text-[#49454F]'>
+              <p className='flex gap-4 items-center text-[#49454F] text-md'>
                 <Image src={TickIcon} alt='tickIcon' /> Dive into Dm’s
               </p>
-              <p className='flex gap-4 items-center text-[#49454F]'>
+              <p className='flex gap-4 items-center text-[#49454F] text-md'>
                 <Image src={TickIcon} alt='tickIcon' /> You have the freedom to
                 cancel <br /> your subscription anytime{' '}
               </p>
             </div>
-            <div className='mt-4' />
+            {/* <div className='mt-4' /> */}
             <MyModal
-              dialogFor='Subscribe Now for '
+              dialogFor='Subscribe For '
               value={modelFees}
               modelId={modelId}
               setIsUnlocked={setIsUnlocked}
@@ -58,12 +58,14 @@ const RightSideBar = ({
         </div>
       )}
 
-      <div className='rounded-md p-[0.8px] h-fit w-full  bg-card_bg border border-[#9A3CFFB2]   '>
+      <div className='rounded-md p-[0.8px] h-fit w-full bg-white border border-[#9A3CFFB2] shadow-lg '>
         <div className=' flex flex-col  rounded-md text-[#49454F] items-center gap-4 p-2  to-[100%]'>
-          <div className='text-[#FA78FF] mt-2 border-[2px] px-4 py-2 rounded-xl border-[#0051FE] text-sm flex gap-2  z-10'>
+          <div className='text-[#FA78FF] mt-2 border-[2px] w-full px-4 py-2 rounded-xl border-[#0051FE] text-sm flex gap-2  z-10 justify-center shadow-lg'>
             <RippleLoader />
             Sale ends
-            <CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} />
+            <div className='text-black'>
+              <CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} />
+            </div>
           </div>
           <ExclusiveCard name={name.split(" ")[0]} image={image} />
         </div>

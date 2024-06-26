@@ -31,14 +31,14 @@ const ModelCard = ({
   const [dialogFor, setDialogfor] = useState('Sale ends');
 
   return (
-    <div className='relative max-w-[285px] text-[#272C8A] p-2 bg-[#FFFFFF] border border-[#CAC4D0] pt-[10px] overflow-hidden rounded-xl'>
+    <div className='text-[#272C8A] p-2 bg-[#FFFFFF] border border-[#CAC4D0] pt-[10px] overflow-hidden rounded-xl'>
       <Image
         src={icon}
         priority
         alt='model'
-        className='w-[260px] h-[220px] aspect-square mx-auto  rounded-t-lg'
+        className='w-full h-40 mx-auto rounded-t-lg rounded-b-none object-cover'
       />
-      <div className='flex flex-col gap-2 rounded-b-lg  justify-between p-3 '>
+      <div className='flex flex-col gap-2 rounded-b-lg  justify-between p-2'>
         <div className='text-[#272C8A]'>
           <div className='flex items-center gap-3 pb-2 '>
             {/* <div className=' w-[40px] h-[40px] bg-white rounded-full'>
@@ -111,7 +111,7 @@ const ModelCard = ({
                 <span className='absolute w-full bottom-0 left-0 z-0 h-0  bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
                 <span className='relative w-full flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
                   {dialogFor === 'Sale ends' ? <RippleLoader /> : null}
-                  {dialogFor}
+                  <p>{dialogFor}</p>
                   {dialogFor === 'Sale ends' ? <div className='text-white'><CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} /></div> : null}
                 </span>
               </Button>

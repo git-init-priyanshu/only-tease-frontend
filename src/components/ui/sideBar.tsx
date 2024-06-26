@@ -7,7 +7,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { BagIcon, FavIcon, HomeIcon, StakingIcon, StarIcon, TvIcon } from '@/components/ui/icons';
+import { BagIcon, FavIcon, HomeIcon, PaymentIcon, StakingIcon, StarIcon, TvIcon } from '@/components/ui/icons';
 
 
 const sideBarContentGenral = [
@@ -15,6 +15,11 @@ const sideBarContentGenral = [
     tag: 'Home',
     icon: HomeIcon,
     link: '/feed',
+  },
+  {
+    tag: 'Payments',
+    icon: PaymentIcon,
+    link: '/payments',
   },
   {
     tag: 'Creators',
@@ -91,11 +96,10 @@ const SideBar = ({ isOpen, setIsOpen }: props) => {
   return (
     <div
       ref={sidebarRef}
-      className={`fixed lg:sticky top-[0%] overflow-hidden left-0 lg:left-[19%] h-full  lg:w-[24%] border-[3px]  border-[#FCC0FF] border-y-0  text-white flex-col items-center transition-transform duration-300 ease-in-out transform ${isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+      className={` text-white ${isOpen ? "w-[20rem]" : "w-[20rem] border-2 border-[#FCC0FF] border-y-0"}`}
     >
       <div className='flex pt-10 flex-col justify-between gap-4 overflow-hidden w-full h-full'>
-        <div className='flex items-center justify-center w-full'>
+        <div className='flex items-center justify-center w-full '>
           <Image src="/images/onchain-summer.webp" alt='onchain' width={213} height={178} />
         </div>
         <div className='px-5 w-full'>
@@ -207,7 +211,7 @@ export const SideBarSections = ({
               height={20}
             /> */}
             <p className={cn('group-hover:text-[#FB0393]', pathname === item.link && 'text-[#FB0393]')}>
-              {item.icon()}
+              {item.icon}
               {/* <svg
                 width={20}
                 height={22}
