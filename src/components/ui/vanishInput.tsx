@@ -68,7 +68,7 @@ export function VanishInput({
               duration: 0.3,
               ease: 'linear',
             }}
-            className='text-sm sm:text-base  text-[#ceb9e9] font-semibold pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate'
+            className='text-sm sm:text-base  text-[#0051FE] font-semibold pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate'
           >
             <Typewriter
               options={{
