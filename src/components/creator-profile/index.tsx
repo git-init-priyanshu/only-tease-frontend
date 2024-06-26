@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 
-import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 import { getModalPayment } from '@/lib/func';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
 
 import { MarketPlaceCard2 } from '@/components/ui/marketPlaceCard';
 

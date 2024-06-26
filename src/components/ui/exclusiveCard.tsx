@@ -1,27 +1,29 @@
 import Image from 'next/image';
 
-import Button from '@/components/buttons/Button';
+import TextButton from '@/components/buttons/TextButton';
 type props = {
   image: any;
   name: string;
 };
 const ExclusiveCard = ({ image, name }: props) => {
   return (
-    <div className='flex flex-col items-end gap-3 p-1'>
-      <div className='flex gap-8 justify-between'>
-        <div className=' flex justify-center'>
+    <div className='flex flex-col items-end p-1'>
+      <div className='flex flex-col justify-between'>
+        <div className=' flex justify-center items-center'>
           <Image
             src={image}
             alt='logo'
             width={60}
             height={60}
-            className='w-[80px] h-[70px] mr-2 rounded-md'
+            className='w-[80px] h-[70px] mr-2 rounded-md shadow-neutral-400 shadow-lg'
           />
           <div className='flex gap-2 flex-col items-center justify-center'>
             <div className='flex flex-col gap-2'>
-              <span>Intimate(15% off for a week!)</span>
+              <span>
+                <b className='text-lg'>Intimate </b>(15% off for a week!)
+              </span>
               <div className='flex gap-2 text-xs'>
-                <span className='px-2 bg-[#9CC4FF] flex  items-center  rounded-md text-white'>
+                <span className='px-2 bg-[#9CC4FF] flex  items-center  rounded-lg text-blue-800'>
                   {' '}
                   <svg
                     aria-label='USDC'
@@ -41,17 +43,43 @@ const ExclusiveCard = ({ image, name }: props) => {
                   </svg>
                   &nbsp;212.5
                 </span>
-                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
+                <span className='px-2 bg-[#9CC4FF] rounded-lg text-blue-800'>
                   0/40&nbsp;left
                 </span>
-                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
+                <span className='flex gap-1 justify-center items-center px-2 bg-[#9CC4FF] rounded-lg text-blue-800'>
+                  <svg
+                    width='11'
+                    height='9'
+                    viewBox='0 0 11 9'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M10.1538 0H0.846154C0.62174 0 0.406517 0.086201 0.247833 0.23964C0.0891481 0.393079 0 0.601187 0 0.818182V8.18182C0 8.39881 0.0891481 8.60692 0.247833 8.76036C0.406517 8.9138 0.62174 9 0.846154 9H10.1538C10.3783 9 10.5935 8.9138 10.7522 8.76036C10.9109 8.60692 11 8.39881 11 8.18182V0.818182C11 0.601187 10.9109 0.393079 10.7522 0.23964C10.5935 0.086201 10.3783 0 10.1538 0ZM10.1538 0.818182V6.07244L8.77514 4.73983C8.69657 4.66383 8.60328 4.60355 8.50061 4.56242C8.39794 4.52129 8.28789 4.50012 8.17675 4.50012C8.06562 4.50012 7.95557 4.52129 7.8529 4.56242C7.75023 4.60355 7.65694 4.66383 7.57837 4.73983L6.52067 5.76256L4.19375 3.51256C4.03508 3.35923 3.81994 3.27311 3.59562 3.27311C3.37131 3.27311 3.15617 3.35923 2.9975 3.51256L0.846154 5.59278V0.818182H10.1538ZM0.846154 6.75L3.59615 4.09091L7.82692 8.18182H0.846154V6.75ZM10.1538 8.18182H9.0237L7.11986 6.34091L8.17755 5.31818L10.1538 7.22966V8.18182ZM6.34615 3.06818C6.34615 2.94682 6.38337 2.82818 6.45311 2.72726C6.52284 2.62635 6.62195 2.5477 6.73791 2.50126C6.85387 2.45481 6.98147 2.44266 7.10458 2.46634C7.22768 2.49001 7.34076 2.54846 7.42951 2.63428C7.51826 2.72009 7.5787 2.82943 7.60319 2.94847C7.62768 3.0675 7.61511 3.19088 7.56708 3.30301C7.51904 3.41514 7.4377 3.51097 7.33334 3.5784C7.22898 3.64583 7.10628 3.68182 6.98077 3.68182C6.81246 3.68182 6.65104 3.61717 6.53203 3.50209C6.41302 3.38701 6.34615 3.23093 6.34615 3.06818Z'
+                      fill='#0051FE'
+                    />
+                  </svg>
                   31
                 </span>
-                <span className='px-2 bg-[#9CC4FF]  rounded-md text-white'>
+                <span className='flex gap-1  justify-center items-center px-2 bg-[#9CC4FF] rounded-lg text-blue-800'>
+                  <svg
+                    width='11'
+                    height='9'
+                    viewBox='0 0 11 9'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      fill-rule='evenodd'
+                      clip-rule='evenodd'
+                      d='M9.9 5.0134e-08C10.1775 -7.97896e-05 10.4448 0.0952032 10.6483 0.266748C10.8518 0.438294 10.9764 0.673422 10.9973 0.925L11 1V8C11.0001 8.25229 10.8953 8.49528 10.7066 8.68027C10.5179 8.86526 10.2592 8.97858 9.9825 8.9975L9.9 9H1.1C0.822483 9.00008 0.555188 8.9048 0.351699 8.73325C0.148209 8.56171 0.0235639 8.32658 0.00275012 8.075L5.51474e-08 8V1C-8.77686e-05 0.747712 0.104724 0.504717 0.293423 0.319726C0.482123 0.134735 0.740765 0.0214217 1.0175 0.00250011L1.1 5.0134e-08H9.9ZM9.9 1H1.1V8H9.9V1ZM4.587 2.319L4.8719 2.434L5.0578 2.514L5.27065 2.609L5.50715 2.718L5.76565 2.843L6.0445 2.983L6.1908 3.059L6.4757 3.2115L6.7364 3.3575L6.9729 3.494L7.1819 3.6205L7.4459 3.7855L7.6461 3.917L7.69835 3.952C7.78323 4.00942 7.85217 4.08408 7.89966 4.17002C7.94716 4.25597 7.97189 4.35082 7.97189 4.447C7.97189 4.54318 7.94716 4.63803 7.89966 4.72398C7.85217 4.80992 7.78323 4.88458 7.69835 4.942L7.5207 5.0595L7.2787 5.2135L7.0829 5.333L6.86015 5.4645L6.611 5.606L6.33655 5.756L6.04285 5.9105L5.7629 6.0515L5.50385 6.1765L5.26735 6.2865L5.05505 6.3805L4.71295 6.5245L4.58645 6.5745C4.48933 6.61255 4.38378 6.62943 4.27821 6.62382C4.17264 6.6182 4.06997 6.59024 3.9784 6.54215C3.88683 6.49407 3.80888 6.4272 3.75078 6.34687C3.69268 6.26654 3.65603 6.17499 3.64375 6.0795L3.61185 5.797L3.59425 5.61L3.57115 5.278L3.5585 5.024L3.55025 4.7465L3.54805 4.5995L3.54695 4.447C3.54695 4.34367 3.54805 4.24367 3.55025 4.147L3.5585 3.8695L3.57115 3.616L3.586 3.3875L3.6025 3.187L3.64375 2.815C3.65596 2.71941 3.69257 2.62773 3.75067 2.54729C3.80876 2.46685 3.88674 2.39986 3.97837 2.35168C4.07 2.30349 4.17275 2.27544 4.27843 2.26977C4.3841 2.2641 4.48977 2.28096 4.587 2.319ZM4.92305 3.5695L4.68325 3.4605L4.6673 3.704L4.6552 3.9795L4.64805 4.2845L4.64695 4.447L4.64805 4.6095L4.6552 4.914L4.6607 5.0555L4.675 5.3155L4.68325 5.433L4.92195 5.324L5.1898 5.196L5.48405 5.049L5.64025 4.968L5.9433 4.805L6.215 4.652L6.4548 4.512L6.5626 4.447L6.33875 4.312L6.08245 4.165C5.93661 4.08292 5.78938 4.00291 5.6408 3.925L5.48515 3.8445L5.19145 3.6975L4.92305 3.5695Z'
+                      fill='#0051FE'
+                    />
+                  </svg>
                   1
                 </span>
               </div>
-              <div className='text-lg text-[#49454F] leading-5'>
+              <div className='flex text-sm text-[#49454F] leading-5 justify-between'>
                 <p>Catch a glimpse ;)</p>
                 <p>
                   original price:&nbsp;
@@ -75,31 +103,20 @@ const ExclusiveCard = ({ image, name }: props) => {
                 </p>
               </div>
             </div>
-            <ul className='text-lg list-disc w-full'>
-              <li>Access my spicer exclusive content </li>
-              <li>Chat with me</li>
-              <li>10 min video call</li>
-              <li>Limited edition {name} DAO Hoodies</li>
-            </ul>
           </div>
         </div>
-
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth={1.5}
-          stroke='currentColor'
-          className='w-6 h-6'
-        >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z'
-          />
-        </svg>
+        <div className='flex items-end m-0 p-0'>
+          <ul className='text-sm list-disc w-full m-4 text-nowrap'>
+            <li>Access my spicer exclusive content </li>
+            <li>Chat with me</li>
+            <li>10 min video call</li>
+            <li>Limited edition {name} DAO Hoodies</li>
+          </ul>
+          <TextButton className='w-[45%] mb-4 rounded flex items-center justify-center mx-auto bg-white text-blue-500 border-2 border-blue-500 shadow-lg'>
+            Buy
+          </TextButton>
+        </div>
       </div>
-      <Button className='w-[80%] flex items-center justify-center mx-auto mt-2'>Buy</Button>
     </div>
   );
 };
