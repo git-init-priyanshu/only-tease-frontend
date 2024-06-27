@@ -16,7 +16,7 @@ import BuyModal from '@/components/ui/BuyModal';
 
 import { allModelData } from '@/utils/modelData';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
+export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     color: '#130D1A',
   },
@@ -26,7 +26,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
+export const StyledTableRow = styled(TableRow)(({ theme }) => ({}));
 
 export default function CustomizedTables() {
   const { data } = useGetListedSubscriptions()
@@ -61,7 +61,7 @@ export default function CustomizedTables() {
         borderRadius: "10px",
         border: "2px solid #FA78FF "
       }}
-      className='w-[1100px]  bg-black text-white border-fuchsia-700 border'
+      className='w-[1100px]  bg-white text-white border-fuchsia-700 border'
     >
       {' '}
       {selectActiveData.icon !== '' && (

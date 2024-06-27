@@ -48,6 +48,7 @@ export const modelCardData = [
     id: 9,
     name: 'Sophia Silva',
     slug: 'Sophia_Silva',
+    fees: 7,
     icon: model8,
     location: 'Tango in Buenos Aires',
     image: model8BannerImage,
@@ -62,6 +63,7 @@ export const modelCardData = [
     id: 10,
     name: 'Isabella Blue',
     slug: 'Isabella_Blue',
+    fees: 16,
     icon: model2,
     location: 'Viva las summer ',
     image: model2BannerImage,
@@ -77,6 +79,7 @@ export const modelCardData = [
     name: 'Ruby Spark',
     slug: 'Ruby_Spark',
     icon: model6,
+    fees: 2,
     location: 'Rumba in Havana: Ruby',
     image: model6BannerImage,
     AboutMe:
@@ -91,6 +94,8 @@ export const modelCardData = [
     id: 12,
     name: 'Alice Gold',
     slug: 'Alice_Gold',
+    fees: 11,
+
     icon: model4,
     location: 'Cha-Cha in New York: Stella',
     image: model4BannerImage,
@@ -103,6 +108,7 @@ export const modelCardData = [
   },
   {
     id: 13,
+    fees: 5,
     name: 'Poonam Pandey',
     slug: 'Poonam_Pandey',
     icon: PoonamPandeyProfileIcon,
@@ -120,6 +126,8 @@ export const modelCardData = [
   {
     id: 14,
     name: 'Samantha Rose',
+    fees: 13,
+
     slug: 'Samantha_Rose',
     icon: model5,
     location: 'Flamenco in Seville: Scarlett',
@@ -136,6 +144,7 @@ export const modelCardData = [
     name: 'Ava adams',
     slug: 'Ava_adams',
     icon: model3,
+    fees: 4,
     location: 'Tango in Paris: Penelope',
     image: model3BannerImage,
     AboutMe:
@@ -150,6 +159,8 @@ export const modelCardData = [
     id: 16,
     name: 'Lily Cruz',
     slug: 'Lily_Cruz',
+    fees: 15,
+
     icon: model7,
     location: 'Samba in Rio de Janeiro: Lily',
     image: model7BannerImage,
@@ -164,6 +175,7 @@ export const modelCardData = [
     id: 17,
     name: 'Evelyn Green',
     slug: 'Evelyn_Green',
+    fees: 10,
     icon: model1,
     location: 'Viva Las Vegas: Hazel',
     image: model1BannerImage,
@@ -183,6 +195,7 @@ export const IndianModelCardData = [
     slug: 'Priya_Anjali_Rai',
     icon: indianModel1ProfileIcon,
     location: 'Mumbai',
+    fees: 1,
     image: indianModel1BannerImage,
     AboutMe:
       "Hey there! I'm Priya, \na vibrant and sociable individual who thrives on adventure and connection.\n\nHiking, skiing, and traveling are my passions,allowing me to explore the world take pride \n in my body's aesthetics and enjoy sharing its allure with others.\n\nLet's dive into deep conversations and explore our desires together.\n\nSubscribe now and let me ignite your passions! 😘",
@@ -196,6 +209,7 @@ export const IndianModelCardData = [
   {
     id: 2,
     name: 'Poonam Pandey',
+    fees: 5,
     slug: 'Poonam_Pandey',
     icon: PoonamPandeyProfileIcon,
     location: 'Delhi',
@@ -213,6 +227,7 @@ export const IndianModelCardData = [
     id: 3,
     name: 'Sahara Knite',
     slug: 'Sahara_Knite',
+    fees: 3,
     icon: indianModel2ProfileIcon,
     location: 'Kolkata',
     image: indianModel2BannerImage,
@@ -229,6 +244,8 @@ export const IndianModelCardData = [
     id: 4,
     name: 'Persia Pele',
     slug: 'Persia_Pele',
+    fees: 14,
+
     icon: indianModel3ProfileIcon,
     location: 'Bangalore',
     image: indianModel3BannerImage,
@@ -245,6 +262,8 @@ export const IndianModelCardData = [
     id: 5,
     name: 'Serena Mann',
     slug: 'Serena_Mann',
+    fees: 8,
+
     icon: indianModel4ProfileIcon,
     location: 'Chennai',
     image: indianModel4BannerImage,
@@ -260,6 +279,8 @@ export const IndianModelCardData = [
   {
     id: 6,
     name: 'Viva Athena',
+    fees: 9,
+
     slug: 'Viva_Athena',
     icon: indianModel5ProfileIcon,
     location: 'Hyderabad',
@@ -276,6 +297,7 @@ export const IndianModelCardData = [
   {
     id: 7,
     name: 'Anjali Kara',
+    fees: 12,
     slug: 'Anjali_Kara',
     icon: indianModel6ProfileIcon,
     location: 'Pune',
@@ -292,6 +314,7 @@ export const IndianModelCardData = [
   {
     id: 8,
     name: 'Sherlyn Chopra',
+    fees: 6,
     slug: 'Sherlyn_Chopra',
     icon: shrelyProfileIcon,
     location: 'Jaipur',

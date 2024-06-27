@@ -267,8 +267,7 @@ export default function MyModal({
     const amount = await checkUserBalanceWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${
-          value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
         } 💸 to subscribe`
       );
     }
@@ -278,8 +277,7 @@ export default function MyModal({
     const amount = await checkUserBalanceAvaWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${
-          value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -289,8 +287,7 @@ export default function MyModal({
     const amount = await checkUserBalanceAmoyWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${
-          value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -300,8 +297,7 @@ export default function MyModal({
     const amount = await checkUserBalanceBase(address);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${
-          value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -352,8 +348,8 @@ export default function MyModal({
         onMouseOver={() => setLocked && setLocked(false)}
         onMouseOut={() => setLocked && setLocked(true)}
         onClick={open}
-        className='flex items-center rounded-lg justify-center bg-white text-blue-500 border-2 border-blue-500 shadow-lg transition-all duration-200'
-        // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+      // className='flex items-/center rounded-lg justify-center bg-white text-blue-500 border-2 border-blue-500 shadow-lg transition-all duration-200'
+      // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
       >
         {/* <span className='absolute bottom-0 left-0 z-0 h-0 w-full  transition-all duration-200 group-hover/button:h-full bg-white text-blue-500 border-2 border-blue-500 shadow-lg' /> */}
         <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-whiterounded mx-auto'>
@@ -457,49 +453,18 @@ export default function MyModal({
                         avalancheCrossTxn ||
                         chainlinkCrossTxn ||
                         Polygontrx) && (
-                        <div
-                          className={`flex items-center ${
-                            batchGaslessTrx
-                              ? 'justify-center'
-                              : 'justify-between'
-                          }  w-full py-3`}
-                        >
-                          <a
-                            href={transactionUrl}
-                            target='_blank'
-                            className='flex items-center gap-1 hover:underline'
+                          <div
+                            className={`flex items-center ${batchGaslessTrx
+                                ? 'justify-center'
+                                : 'justify-between'
+                              }  w-full py-3`}
                           >
-                            {paymentSuccessMessage(walletChosen)}
-                            <svg
-                              stroke='currentColor'
-                              fill='none'
-                              stroke-width='2'
-                              viewBox='0 0 24 24'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                              height='1em'
-                              width='1em'
-                              xmlns='http://www.w3.org/2000/svg'
-                            >
-                              <path
-                                stroke='none'
-                                d='M0 0h24v24H0z'
-                                fill='none'
-                              ></path>
-                              <path d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6'></path>
-                              <path d='M11 13l9 -9'></path>
-                              <path d='M15 4h5v5'></path>
-                            </svg>
-                          </a>
-                          {walletChosen === 'Morph' && (
                             <a
-                              href={`https://testnets.opensea.io/assets/sepolia/0xB974E8Db0Ad4b573e8AFBC601146Fc8daE2FC4DD/${
-                                BigInt(1e18) * BigInt(5) + BigInt(18)
-                              }`}
+                              href={transactionUrl}
                               target='_blank'
-                              className='flex items-center text-white gap-1 hover:underline'
+                              className='flex items-center gap-1 hover:underline'
                             >
-                              Nft Minted
+                              {paymentSuccessMessage(walletChosen)}
                               <svg
                                 stroke='currentColor'
                                 fill='none'
@@ -521,14 +486,42 @@ export default function MyModal({
                                 <path d='M15 4h5v5'></path>
                               </svg>
                             </a>
-                          )}
-                        </div>
-                      )}
+                            {walletChosen === 'Morph' && (
+                              <a
+                                href={`https://testnets.opensea.io/assets/sepolia/0xB974E8Db0Ad4b573e8AFBC601146Fc8daE2FC4DD/${BigInt(1e18) * BigInt(5) + BigInt(18)
+                                  }`}
+                                target='_blank'
+                                className='flex items-center text-white gap-1 hover:underline'
+                              >
+                                Nft Minted
+                                <svg
+                                  stroke='currentColor'
+                                  fill='none'
+                                  stroke-width='2'
+                                  viewBox='0 0 24 24'
+                                  stroke-linecap='round'
+                                  stroke-linejoin='round'
+                                  height='1em'
+                                  width='1em'
+                                  xmlns='http://www.w3.org/2000/svg'
+                                >
+                                  <path
+                                    stroke='none'
+                                    d='M0 0h24v24H0z'
+                                    fill='none'
+                                  ></path>
+                                  <path d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6'></path>
+                                  <path d='M11 13l9 -9'></path>
+                                  <path d='M15 4h5v5'></path>
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                        )}
                       {testTokensHash && (
                         <div
-                          className={`flex items-center w-full py-3 ${
-                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
-                          }`}
+                          className={`flex items-center w-full py-3 ${progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                            }`}
                         >
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensHash}`}
@@ -561,9 +554,8 @@ export default function MyModal({
                       )}
                       {testTokensZekEvm && (
                         <div
-                          className={`flex items-center w-full py-3 ${
-                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
-                          }`}
+                          className={`flex items-center w-full py-3 ${progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                            }`}
                         >
                           <a
                             href={`${chainConfig[3].blockExplorerUrl}/tx/${testTokensZekEvm}`}
@@ -596,9 +588,8 @@ export default function MyModal({
                       )}
                       {testTokensBase && (
                         <div
-                          className={`flex items-center w-full py-3 ${
-                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
-                          }`}
+                          className={`flex items-center w-full py-3 ${progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                            }`}
                         >
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensBase}`}
@@ -631,9 +622,8 @@ export default function MyModal({
                       )}
                       {polygonTokensHash && (
                         <div
-                          className={`flex items-center w-full py-3 ${
-                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
-                          }`}
+                          className={`flex items-center w-full py-3 ${progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                            }`}
                         >
                           <a
                             href={`${chainConfig[2].blockExplorerUrl}/tx/${polygonTokensHash}`}
@@ -675,9 +665,8 @@ export default function MyModal({
                                 setWalletChosen(coin.name);
                                 setLoadingState('Confirm Payment');
                               }}
-                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium transition-all duration-300 hover:w-24 ${
-                                walletChosen === coin.name ? 'bg-gray-800' : ''
-                              }`}
+                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium transition-all duration-300 hover:w-24 ${walletChosen === coin.name ? 'bg-gray-800' : ''
+                                }`}
                               key={coin.name}
                             >
                               <div className='absolute left-0 w-7 h-7  '>
@@ -717,7 +706,7 @@ export default function MyModal({
                           `z-20 flex items-center justify-center w-full gap-2 rounded-md  py-2 px-10 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white`,
                           (!walletChosen ||
                             loadingState !== 'Confirm Payment') &&
-                            'cursor-not-allowed opacity-50 '
+                          'cursor-not-allowed opacity-50 '
                         )}
                       >
                         <p>{loadingState}</p>

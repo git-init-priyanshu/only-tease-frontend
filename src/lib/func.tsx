@@ -533,7 +533,7 @@ export async function getTestFundsBase(address: any) {
     mockUsdAbi,
     thirdPartyProvider
   );
-  const trx = await usdc.transfer(signerAddress, 10000e6);
+  const trx = await usdc.transfer(signerAddress, 100e6);
   return { trxhash: trx.hash };
 }
 

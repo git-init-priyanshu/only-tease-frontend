@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import { API_ROUTES, API_URL, fetchJSON } from '@/utils';
-import { allModelData } from '@/utils/modelData';
+import { IndianModelCardData, modelCardData } from '@/utils/modelData';
 
 const filterMatchingIds = (array1: any, array2: any) => {
   const filteredArray = array1.filter((item1: any) => {
@@ -31,7 +31,13 @@ const useFetchUserDetails = (
         }) => s.modelId.toString() === modelId?.toString())
         return {
           isFound: true,
-          subscriptions: filterMatchingIds(data.data.subscriptions, allModelData),
+          subscriptions: filterMatchingIds(data.data.subscriptions, [...IndianModelCardData, ...modelCardData]).map((s) => {
+            const modelData = [...IndianModelCardData, ...modelCardData].find(m => m.id.toString() === s.modelId)
+            return {
+              ...s,
+              modeldata: modelData
+            }
+          }),
           isUnlocked: isUnlocked ?? false,
           open_ai_id: data.data.user.openAi_tokenId,
           ipfs: data.data.user.ipfs_url
