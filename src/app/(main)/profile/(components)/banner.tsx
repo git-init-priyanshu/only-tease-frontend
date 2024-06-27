@@ -38,7 +38,7 @@ const ModelBanner = ({ name, icon, AboutMe, image, views, posts }: props) => {
           />
 
           <Image
-            className='absolute object-fill rounded-lg border-white border w-20 h-24 shrink-0 sm:w-28 sm:h-32 top-[70%]    '
+            className='absolute object-cover rounded-lg border-white border w-20 h-24 shrink-0 sm:w-28 sm:h-32 top-[70%]    '
             src={icon}
             alt='banner image'
           />

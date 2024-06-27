@@ -179,6 +179,7 @@ export default function Page() {
                   className='object-cover'
                   alt='model'
                 />
+                <div className='absolute inset-0 hover:bg-gradient-to-t from-white via-white/10 to-transparent transition-all duration-300'></div>
                 <div className='absolute bottom-0 left-0 w-full p-2 text-white'>
                   <div className='flex items-center justify-start gap-3 pb-2 relative z-20'>
                     <div className='w-[50px] h-[50px] bg-white rounded-full overflow-hidden'>
