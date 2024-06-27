@@ -79,8 +79,8 @@ const ExclusiveCard = ({ image, name }: props) => {
                   1
                 </span>
               </div>
-              <div className='flex text-sm text-[#49454F] leading-5 justify-between'>
-                <p>Catch a glimpse ;)</p>
+              <div className='flex text-sm flex-wrap text-[#49454F] leading-5 justify-between'>
+                <p>Catch a glimpse ;)</p>{" "}
                 <p>
                   original price:&nbsp;
                   <svg

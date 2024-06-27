@@ -19,7 +19,7 @@ const CreatorsPage = () => {
       {type === "indian" ?
         <>
           <p className='text-[#0051FE] underline text-2xl my-3 pl-4 font-semibold'> Indian Creators</p>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pt-5 gap-6 place-content-center'>
             {IndianModelCardData.map((item, index) => (
               <React.Fragment key={index}>
                 <ModelCard {...item} index={index + 1} />
