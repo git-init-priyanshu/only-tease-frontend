@@ -11,9 +11,6 @@ import toast from 'react-hot-toast';
 import { useAccount } from 'wagmi';
 import { baseSepolia } from 'wagmi/chains';
 
-import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
-import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
-import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 import {
   batchSubscribeFor,
   chainLinkAutomationSubscription,
@@ -29,6 +26,9 @@ import {
   purchaseSubscriptionZkevm,
 } from '@/lib/func';
 import { cn, toastStyles } from '@/lib/utils';
+import useNftMarketPlaceAutomation from '@/hooks/contracts/useNftMarketplaceAutomation';
+import useFetchUserDetails from '@/hooks/user/useFetchUserDetails';
+import useWeb3auth, { chainConfig } from '@/hooks/useWeb3auth';
 
 import Button from '@/components/buttons/Button';
 import RippleLoader from '@/components/buttons/rippleLoader';
@@ -39,9 +39,9 @@ import { VanishInput } from '@/components/ui/vanishInput';
 import { morph } from '@/app/Providers';
 import { coinData } from '@/utils/natworkData';
 
-
 const subscriptionId = Math.floor(Math.random() * (1e12 - 1 + 1)) + 1;
 
+const months = [3, 6, 12];
 export default function MyModal({
   setLocked,
   dialogFor,
@@ -57,7 +57,8 @@ export default function MyModal({
   modelId: number;
   setIsUnlocked: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const { address } = useAccount()
+  const { address } = useAccount();
+  const [selectedMonth, setSelectedMonth] = useState(months[0]);
   const [isOpen, setIsOpen] = useState(false);
   const [walletChosen, setWalletChosen] = useState('');
   const [batchGaslessTrx, setBatchGaslessTrx] = useState('');
@@ -71,40 +72,36 @@ export default function MyModal({
   const [polygonTokensHash, setPolygonTokensHash] = useState('');
   const [nftTrx, setNftTrx] = useState('');
   const [progress, setProgress] = React.useState(0);
-  const { refetch } = useFetchUserDetails()
+  const { refetch } = useFetchUserDetails();
 
   const showMsgs = () => {
     setProgress(100);
     toast.success('Payment completed successfully', toastStyles);
   };
 
-  const { purchaseSubscription, txHash, isLoading } = useNftMarketPlaceAutomation({
-    amount: value.toString(),
-    modelId: modelId,
-    onSuccess: () => showMsgs()
-  })
+  const { purchaseSubscription, txHash, isLoading } =
+    useNftMarketPlaceAutomation({
+      amount: (value * selectedMonth).toString(),
+      modelId: modelId,
+      onSuccess: () => showMsgs(),
+    });
 
-
-  const {
-    smartAccount,
-    login,
-    email,
-  } = useWeb3auth();
+  const { smartAccount, login, email } = useWeb3auth();
 
   function open() {
     setIsOpen(true);
   }
-  console.log(txHash !== "", "txHash");
+  console.log(txHash !== '', 'txHash');
 
   function close() {
     setIsOpen(false);
-    if (txHash !== "") {
-      setIsUnlocked(true)
+    if (txHash !== '') {
+      setIsUnlocked(true);
     }
-    setTestTokensBaseHash("")
+    setTestTokensBaseHash('');
     setWalletChosen('');
-    refetch()
-    setProgress(0)
+    refetch();
+    setProgress(0);
   }
   const [provider, setProvider] = useState<any>(undefined);
   const [loadingState, setLoadingState] = useState<string>('Confirm Payment');
@@ -115,7 +112,6 @@ export default function MyModal({
     `She's right around the corner 👠. Sit tight! 💺💃`,
     'She is ready!🍾 Head over and enjoy the show! 🎵🥂',
   ];
-
 
   const chainLinkNotifier = async () => {
     try {
@@ -178,8 +174,8 @@ export default function MyModal({
   const handleOperation = async (walletChosen: string) => {
     try {
       if (walletChosen.toLowerCase() === 'base') {
-        setProgress(10)
-        await purchaseSubscription()
+        setProgress(10);
+        await purchaseSubscription();
       } else if (walletChosen === 'MoonBeam') {
         setProgress(10);
         const resp = await batchSubscribeFor({
@@ -271,7 +267,8 @@ export default function MyModal({
     const amount = await checkUserBalanceWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${
+          value - parseInt(amount.signerBalance)
         } 💸 to subscribe`
       );
     }
@@ -281,7 +278,8 @@ export default function MyModal({
     const amount = await checkUserBalanceAvaWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${
+          value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -291,7 +289,8 @@ export default function MyModal({
     const amount = await checkUserBalanceAmoyWeb3Auth(smartAccount);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${
+          value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -301,7 +300,8 @@ export default function MyModal({
     const amount = await checkUserBalanceBase(address);
     if (parseInt(amount.signerBalance) < value) {
       setLoadingState(
-        `Insufficient Funds need ${value - parseInt(amount.signerBalance)
+        `Insufficient Funds need ${
+          value - parseInt(amount.signerBalance)
         }💸 to subscribe`
       );
     }
@@ -352,13 +352,30 @@ export default function MyModal({
         onMouseOver={() => setLocked && setLocked(false)}
         onMouseOut={() => setLocked && setLocked(true)}
         onClick={open}
-        className='flex items-center justify-center'
-      // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+        className='flex items-center rounded-lg justify-center bg-white text-blue-500 border-2 border-blue-500 shadow-lg transition-all duration-200'
+        // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
       >
-        <span className='absolute bottom-0 left-0 z-0 h-0 w-full  transition-all duration-200 group-hover/button:h-full' />
-        <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
+        {/* <span className='absolute bottom-0 left-0 z-0 h-0 w-full  transition-all duration-200 group-hover/button:h-full bg-white text-blue-500 border-2 border-blue-500 shadow-lg' /> */}
+        <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-whiterounded mx-auto'>
           {dialogFor === 'ends : 09h 36m 22s' ? <RippleLoader /> : null}
-          {dialogFor}
+          {dialogFor}{' '}
+          <svg
+            aria-label='USDC'
+            width='1em'
+            height='1em'
+            viewBox='0 0 32 32'
+            xmlns='http://www.w3.org/2000/svg'
+            className='inline-block size-[.8lh] shrink-0'
+          >
+            <g fill='none'>
+              <circle cx='16' cy='16' r='16' fill='#3E73C4'></circle>
+              <g fill='#FFF'>
+                <path d='M20.022 18.124c0-2.124-1.28-2.852-3.84-3.156c-1.828-.243-2.193-.728-2.193-1.578c0-.85.61-1.396 1.828-1.396c1.097 0 1.707.364 2.011 1.275a.458.458 0 0 0 .427.303h.975a.416.416 0 0 0 .427-.425v-.06a3.04 3.04 0 0 0-2.743-2.489V9.142c0-.243-.183-.425-.487-.486h-.915c-.243 0-.426.182-.487.486v1.396c-1.829.242-2.986 1.456-2.986 2.974c0 2.002 1.218 2.791 3.778 3.095c1.707.303 2.255.668 2.255 1.639c0 .97-.853 1.638-2.011 1.638c-1.585 0-2.133-.667-2.316-1.578c-.06-.242-.244-.364-.427-.364h-1.036a.416.416 0 0 0-.426.425v.06c.243 1.518 1.219 2.61 3.23 2.914v1.457c0 .242.183.425.487.485h.915c.243 0 .426-.182.487-.485V21.34c1.829-.303 3.047-1.578 3.047-3.217z'></path>
+                <path d='M12.892 24.497c-4.754-1.7-7.192-6.98-5.424-11.653c.914-2.55 2.925-4.491 5.424-5.402c.244-.121.365-.303.365-.607v-.85c0-.242-.121-.424-.365-.485c-.061 0-.183 0-.244.06a10.895 10.895 0 0 0-7.13 13.717c1.096 3.4 3.717 6.01 7.13 7.102c.244.121.488 0 .548-.243c.061-.06.061-.122.061-.243v-.85c0-.182-.182-.424-.365-.546zm6.46-18.936c-.244-.122-.488 0-.548.242c-.061.061-.061.122-.061.243v.85c0 .243.182.485.365.607c4.754 1.7 7.192 6.98 5.424 11.653c-.914 2.55-2.925 4.491-5.424 5.402c-.244.121-.365.303-.365.607v.85c0 .242.121.424.365.485c.061 0 .183 0 .244-.06a10.895 10.895 0 0 0 7.13-13.717c-1.096-3.46-3.778-6.07-7.13-7.162z'></path>
+              </g>
+            </g>
+          </svg>{' '}
+          11/ Month
           {value ? (
             <span className='flex  items-center justify-center gap-1'>
               <svg
@@ -389,14 +406,17 @@ export default function MyModal({
           className='relative z-10 focus:outline-none'
           onClose={() => {
             if (isLoading) {
-              return undefined
+              return undefined;
             }
-            close()
+            close();
           }}
         >
-          <div style={{
-            zIndex: 999999
-          }} className='fixed inset-0 w-screen bg-black bg-opacity-60 overflow-y-auto z-50'>
+          <div
+            style={{
+              zIndex: 999999,
+            }}
+            className='fixed inset-0 w-screen bg-black bg-opacity-60 overflow-y-auto z-50'
+          >
             <div className='flex min-h-full items-center justify-center p-4'>
               <TransitionChild
                 enter='ease-out duration-300'
@@ -408,6 +428,27 @@ export default function MyModal({
               >
                 <DialogPanel className='w-full max-w-xl  space-y-2 rounded-xl bg-card_bg bg-white text-[#272C8A] p-10'>
                   <h1 className='text-2xl '>Subscribe</h1>
+                  <div className='flex items-center py-2 justify-between'>
+                    <div className='text-xl font-semibold '>Autopay 🔁</div>
+                    <div className='flex items-center space-x-2 justify-center'>
+                      {months.map((s, index) => (
+                        <div
+                          onClick={() => {
+                            setSelectedMonth(s);
+                          }}
+                          className={cn(
+                            'w-[60px] cursor-pointer  rounded-lg py-1 flex items-center justify-center  px-2',
+                            selectedMonth === s
+                              ? 'bg-[#0051FE] text-white shadow-lg border border-[#0051FE]'
+                              : ''
+                          )}
+                          key={index}
+                        >
+                          {s}m
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                   <p className=''>
                     Subscribe to get access to exclusive content
                   </p>
@@ -427,23 +468,55 @@ export default function MyModal({
                     )}
                     <div className='absolute left-1/2 top-[62%] -translate-x-1/2 -translate-y-1/2 w-full'>
                       {(approvetrx ||
-                        batchGaslessTrx || txHash ||
+                        batchGaslessTrx ||
+                        txHash ||
                         nftTrx ||
                         avalancheCrossTxn ||
                         chainlinkCrossTxn ||
                         Polygontrx) && (
-                          <div
-                            className={`flex items-center ${batchGaslessTrx
+                        <div
+                          className={`flex items-center ${
+                            batchGaslessTrx
                               ? 'justify-center'
                               : 'justify-between'
-                              }  w-full py-3`}
+                          }  w-full py-3`}
+                        >
+                          <a
+                            href={transactionUrl}
+                            target='_blank'
+                            className='flex items-center gap-1 hover:underline'
                           >
-                            <a
-                              href={transactionUrl}
-                              target='_blank'
-                              className='flex items-center gap-1 hover:underline'
+                            {paymentSuccessMessage(walletChosen)}
+                            <svg
+                              stroke='currentColor'
+                              fill='none'
+                              stroke-width='2'
+                              viewBox='0 0 24 24'
+                              stroke-linecap='round'
+                              stroke-linejoin='round'
+                              height='1em'
+                              width='1em'
+                              xmlns='http://www.w3.org/2000/svg'
                             >
-                              {paymentSuccessMessage(walletChosen)}
+                              <path
+                                stroke='none'
+                                d='M0 0h24v24H0z'
+                                fill='none'
+                              ></path>
+                              <path d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6'></path>
+                              <path d='M11 13l9 -9'></path>
+                              <path d='M15 4h5v5'></path>
+                            </svg>
+                          </a>
+                          {walletChosen === 'Morph' && (
+                            <a
+                              href={`https://testnets.opensea.io/assets/sepolia/0xB974E8Db0Ad4b573e8AFBC601146Fc8daE2FC4DD/${
+                                BigInt(1e18) * BigInt(5) + BigInt(18)
+                              }`}
+                              target='_blank'
+                              className='flex items-center text-white gap-1 hover:underline'
+                            >
+                              Nft Minted
                               <svg
                                 stroke='currentColor'
                                 fill='none'
@@ -465,40 +538,15 @@ export default function MyModal({
                                 <path d='M15 4h5v5'></path>
                               </svg>
                             </a>
-                            {walletChosen === 'Morph' && (
-                              <a
-                                href={`https://testnets.opensea.io/assets/sepolia/0xB974E8Db0Ad4b573e8AFBC601146Fc8daE2FC4DD/${BigInt(1e18) * BigInt(5) + BigInt(18)
-                                  }`}
-                                target='_blank'
-                                className='flex items-center text-white gap-1 hover:underline'
-                              >
-                                Nft Minted
-                                <svg
-                                  stroke='currentColor'
-                                  fill='none'
-                                  stroke-width='2'
-                                  viewBox='0 0 24 24'
-                                  stroke-linecap='round'
-                                  stroke-linejoin='round'
-                                  height='1em'
-                                  width='1em'
-                                  xmlns='http://www.w3.org/2000/svg'
-                                >
-                                  <path
-                                    stroke='none'
-                                    d='M0 0h24v24H0z'
-                                    fill='none'
-                                  ></path>
-                                  <path d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6'></path>
-                                  <path d='M11 13l9 -9'></path>
-                                  <path d='M15 4h5v5'></path>
-                                </svg>
-                              </a>
-                            )}
-                          </div>
-                        )}
+                          )}
+                        </div>
+                      )}
                       {testTokensHash && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensHash}`}
                             target='_blank'
@@ -529,7 +577,11 @@ export default function MyModal({
                         </div>
                       )}
                       {testTokensZekEvm && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${chainConfig[3].blockExplorerUrl}/tx/${testTokensZekEvm}`}
                             target='_blank'
@@ -560,7 +612,11 @@ export default function MyModal({
                         </div>
                       )}
                       {testTokensBase && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${baseSepolia.blockExplorers.default.url}/tx/${testTokensBase}`}
                             target='_blank'
@@ -591,7 +647,11 @@ export default function MyModal({
                         </div>
                       )}
                       {polygonTokensHash && (
-                        <div className='flex items-center w-full'>
+                        <div
+                          className={`flex items-center w-full py-3 ${
+                            progress > 0 && progress < 99 ? 'mt-20' : 'mt-0'
+                          }`}
+                        >
                           <a
                             href={`${chainConfig[2].blockExplorerUrl}/tx/${polygonTokensHash}`}
                             target='_blank'
@@ -632,8 +692,9 @@ export default function MyModal({
                                 setWalletChosen(coin.name);
                                 setLoadingState('Confirm Payment');
                               }}
-                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium transition-all duration-300 hover:w-24 ${walletChosen === coin.name ? 'bg-gray-800' : ''
-                                }`}
+                              className={`group/button relative  inline-flex  h-10 w-10 items-center justify-center overflow-hidden bg-transparent font-medium transition-all duration-300 hover:w-24 ${
+                                walletChosen === coin.name ? 'bg-gray-800' : ''
+                              }`}
                               key={coin.name}
                             >
                               <div className='absolute left-0 w-7 h-7  '>
@@ -673,7 +734,7 @@ export default function MyModal({
                           `z-20 flex items-center justify-center w-full gap-2 rounded-md  py-2 px-10 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white`,
                           (!walletChosen ||
                             loadingState !== 'Confirm Payment') &&
-                          'cursor-not-allowed opacity-50 '
+                            'cursor-not-allowed opacity-50 '
                         )}
                       >
                         <p>{loadingState}</p>
@@ -719,9 +780,7 @@ export default function MyModal({
                                 setTestTokensZekEvmHash('');
                               }
                             } else if (walletChosen.toLowerCase() === 'base') {
-                              const resp = await getTestFundsBase(
-                                address
-                              );
+                              const resp = await getTestFundsBase(address);
                               if (resp.trxhash) {
                                 toast.success(
                                   'Wooho your funds have arrived 🚀🎉💸',
