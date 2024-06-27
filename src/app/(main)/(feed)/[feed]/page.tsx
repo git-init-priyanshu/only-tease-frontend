@@ -1,7 +1,6 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
-import React from 'react';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 import ModelCard from '@/components/ui/modelCard';
 
@@ -12,12 +11,11 @@ type Props = {
   };
 };
 
-const CreatorsPage = ({ params }: Props) => {
+const CreatorsPage = () => {
   const searchParams = useSearchParams()
-  console.log(searchParams.get("type"), "searchParams");
   const type = searchParams.get("type") ?? "global"
   return (
-    <div className='w-fit max-w-[90%] lg:max-w-[80%] mx-auto my-8'>
+    <div className='w-fit max-w-[90%] lg:max-w-[90%] mx-auto my-8'>
       {type === "indian" ?
         <>
           <p className='text-[#0051FE] underline text-2xl my-3 pl-4 font-semibold'> Indian Creators</p>
@@ -44,9 +42,9 @@ const CreatorsPage = ({ params }: Props) => {
   );
 };
 
-const Page = ({ params }: Props) => {
+const Page = () => {
   return <Suspense>
-    <CreatorsPage params={params} />
+    <CreatorsPage />
   </Suspense>
 }
 
