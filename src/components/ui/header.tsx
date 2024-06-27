@@ -1,18 +1,22 @@
 'use client';
 
-import { useSession } from "next-auth/react";
+import { AlignJustify } from 'lucide-react'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 
 import useFetchUserDetails from "@/hooks/user/useFetchUserDetails";
+import useWindowSize from '@/hooks/useWindowSize';
 
+import IconButton from "@/components/buttons/IconButton"
 import AccountConnect from "@/components/layout/header/AccountConnect";
 import GoogleSignIn from "@/components/layout/header/GoogleSiginModal";
 import Avatar from "@/components/ui/avatar";
 
 import logo from '../../../public/images/logoWithoutGradient.webp';
+import smartWallet from '../../../public/images/Subtract.png'
 
 type props = {
   isOpen: boolean;
@@ -20,6 +24,7 @@ type props = {
 };
 
 const Header = ({ isOpen, setIsOpen }: props) => {
+  const windowSize = useWindowSize()
   const { data: session, status } = useSession()
 
   const [isSignInOpen, setIsSignInOpen] = useState(false)
@@ -34,9 +39,6 @@ const Header = ({ isOpen, setIsOpen }: props) => {
       }
     }
   }, [address, status, userData?.isFound]);
-
-
-
 
   return (
     <div className='w-full flex items-center border-[1px] border-t-0 border-r-0 h-[110px] border-l-0 border-[#FCC0FF] bg-[#F7F2FA] justify-between px-6 py-4 lg:py-4 fixed top-0 z-10'>
@@ -96,6 +98,14 @@ const Header = ({ isOpen, setIsOpen }: props) => {
         <div className='flex items-center text-white justify-end'>
           <AccountConnect />
         </div>
+        <div className='flex gap-2 justify-center items-center'>
+          <Image src={smartWallet} alt="smart-wallet" className='size-10 object-contain' />
+          <div className='font-bold text-[#0051FE]'>
+            <p>Smart</p>
+            <p>Wallet</p>
+          </div>
+        </div>
+        {windowSize.width <= 1090 ? <IconButton icon={AlignJustify} onClick={() => setIsOpen(!isOpen)} /> : <></>}
       </div>
     </div>
   );
