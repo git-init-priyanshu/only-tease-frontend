@@ -15,7 +15,7 @@ const CreatorsPage = () => {
   const searchParams = useSearchParams()
   const type = searchParams.get("type") ?? "global"
   return (
-    <div className='w-fit max-w-[90%] lg:max-w-[90%] mx-auto my-8'>
+    <div className='w-fit max-w-[90%] lg:max-w-[100%] mx-auto my-8'>
       {type === "indian" ?
         <>
           <p className='text-[#0051FE] underline text-2xl my-3 pl-4 font-semibold'> Indian Creators</p>
