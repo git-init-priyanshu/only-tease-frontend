@@ -23,7 +23,7 @@ const useGetPayments = () => {
           ...s,
           modelData: modelData
         }
-      })
+      }).sort((a, b) => new Date(b.blockTimestamp) - new Date(a.blockTimestamp))
       return formatted as [] || []
     },
     refetchInterval: 10000
