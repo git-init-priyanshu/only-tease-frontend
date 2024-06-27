@@ -111,8 +111,8 @@ const ModelCard = ({
                 <span className='absolute w-full bottom-0 left-0 z-0 h-0  bg-[#fb0393] transition-all duration-200 group-hover/button:h-full' />
                 <span className='relative w-full flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-white'>
                   {dialogFor === 'Sale ends' ? <RippleLoader /> : null}
-                  <p>{dialogFor}</p>
-                  {dialogFor === 'Sale ends' ? <div className='text-white'><CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} /></div> : null}
+                  <p className='text-[10px]'>{dialogFor}</p>
+                  {dialogFor === 'Sale ends' ? <div className='text-[10px] text-white'><CountdownTimer duration={7200 * (Math.floor(Math.random() * 10) + 1)} /></div> : null}
                 </span>
               </Button>
             </Link>

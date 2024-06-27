@@ -15,7 +15,7 @@ const ExclusiveCard = ({ image, name }: props) => {
             alt='logo'
             width={60}
             height={60}
-            className='w-[80px] h-[70px] mr-2 rounded-md shadow-neutral-400 shadow-lg'
+            className='w-[80px] h-[70px] object-cover mr-2 rounded-md shadow-neutral-400 shadow-lg'
           />
           <div className='flex gap-2 flex-col items-center justify-center'>
             <div className='flex flex-col gap-2'>

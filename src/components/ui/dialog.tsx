@@ -348,8 +348,7 @@ export default function MyModal({
         onMouseOver={() => setLocked && setLocked(false)}
         onMouseOut={() => setLocked && setLocked(true)}
         onClick={open}
-      // className='flex items-/center rounded-lg justify-center bg-white text-blue-500 border-2 border-blue-500 shadow-lg transition-all duration-200'
-      // className=' cursor-pointer h-[37px] w-full group/button relative overflow-hidden rounded-md bg-[rgb(48,20,47)] bg-gradient-to-br from-[rgba(48,20,47,1)] from-[0%] to-[rgba(17,12,23,1)] to-[57%] px-5 py-1.5 text-xs font-medium text-[#fb0393] transition-all hover:border-red-500 active:scale-95'
+        className='flex items-center rounded-lg justify-center bg-white text-blue-500 border-2 border-blue-500 shadow-lg transition-all duration-200'
       >
         {/* <span className='absolute bottom-0 left-0 z-0 h-0 w-full  transition-all duration-200 group-hover/button:h-full bg-white text-blue-500 border-2 border-blue-500 shadow-lg' /> */}
         <span className='relative flex gap-2 justify-center items-center z-10 transition-all duration-500 group-hover/button:text-whiterounded mx-auto'>
