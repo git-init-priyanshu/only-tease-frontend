@@ -174,7 +174,7 @@ export default function Page() {
                   <CheckIcon className="hidden size-5 fill-pink-600 group-data-[checked]:block" />
                 </Checkbox>
                 <Image
-                  src={currentModelData.image}
+                  src={currentModelData.icon}
                   layout="fill"
                   className='object-cover'
                   alt='model'
@@ -185,7 +185,7 @@ export default function Page() {
                       <Image
                         height={200}
                         width={200}
-                        src={currentModelData.icon}
+                        src={currentModelData.image}
                         alt='model icon'
                         className='w-full h-full object-cover'
                       />
